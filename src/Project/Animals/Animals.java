@@ -3,7 +3,7 @@ package Project.Animals;
 public class Animals {
     private String animalsName = "name";
 
-    public String getAnimalsName() {
-        return animalsName;
+    public String GetAnimalName() {
+        return this.animalsName;
     }
 }

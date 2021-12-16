@@ -1,11 +1,12 @@
 package Project;
 
-import Project.Animals.Animals;
+import Project.Visitors.Visitors;
+import Project.Zoo.Zoo;
 
 public class Main {
 
     public static void main(String[] args) {
         Zoo zoo = new Zoo();
-        zoo.Run();
+        zoo.VisitorLetIn(new Visitors());
     }
 }
