@@ -11,40 +11,57 @@ public class Zoo {
     private int zooNumberOfActualVisitor = 0;
     private int zooNumberOfFoodVegetable = 0;
     private int zooNumberOfFoodMeat = 0;
+    private int zooMaxAtractive = 0;
+    private int zooMaxDirtiness = 0;
     private int zooDirtiness = 0;
     private int zooAtractive = 0;
-    private int zooVisitorsCapacity = 10;
-    private int zooAnimalsCapacity = 10;
-    private ZooCashOffice zooCashOffice = new ZooCashOffice();
-    private ZooManagment zooManagment = new ZooManagment();
+    private int zooVisitorsCapacity = 0;
+    private int zooAnimalsCapacity = 3;
+    private int zooLevel = 0;
 
-    public ArrayList<Animals> GetAnimalsList() {
-        return this.animals;
+    public Zoo() {
+
     }
 
-    public void AddAnimalToList(Animals animal) {
-        if(this.animals.size() < this.zooAnimalsCapacity) {
-            this.animals.add(animal);
-            Output.Set("Success!");
-            Output.Set("Animal: " + animal.GetAnimalName() + " was added to zoo.");
-        } else {
-            Output.Set("Maximum zoo capacity is reached!");
-            Output.Set("Zoo capacity: " + this.zooAnimalsCapacity);
-            Output.Set("Animals in zoo: " + this.animals.size());
+    public void GetAnimalsList() {
+        int i=1;
+        for(Animals animal: this.animals) {
+            Output.Set("["+ (i++) + "] " + animal.GetAnimalName());
         }
     }
 
-    public void RemoveAnimalFromList(int animalNumber) {
+    public boolean AddAnimalToList(Animals animal) {
+        if(animal.GetAnimalBuyLevel() <= this.zooLevel) {
+            if (this.animals.size() < this.zooAnimalsCapacity) {
+                this.animals.add(animal);
+                Output.Set("Animal: " + animal.GetAnimalName() + " was added to zoo.");
+                return true;
+            } else {
+                Output.Set("Maximum zoo capacity is reached!");
+                Output.Set("Zoo capacity: " + this.zooAnimalsCapacity);
+                Output.Set("Animals in zoo: " + this.animals.size());
+            }
+        } else {
+            Output.Set("Zoo level is to low for " + animal.GetAnimalName());
+            Output.Set("Zoo level: " + this.zooLevel);
+            Output.Set(animal.GetAnimalName() + " level: " + animal.GetAnimalBuyLevel());
+        }
+        return false;
+    }
+
+    public boolean RemoveAnimalFromList(int animalNumber) {
         if(!this.animals.isEmpty()) {
             if(animalNumber >= 0 && animalNumber < this.animals.size()) {
-                Output.Set("Animal: " + this.animals.get(animalNumber-1).GetAnimalName() + " was removed from zoo.");
-                animals.remove(animalNumber - 1);
+                Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");
+                this.animals.remove(animalNumber);
+                return true;
             } else {
-                Output.Set("Selected index of animal is wrong!");
+                Output.Set("Selected number of animal is wrong!");
             }
         } else {
             Output.Set("Zoo is empty!");
         }
+        return false;
     }
 
     public void AddVegetable(int vegetableNumber) {
@@ -72,7 +89,7 @@ public class Zoo {
     }
 
     public void IncreaseZooDirtiness() {
-        if(this.zooDirtiness < 10) {
+        if(this.zooDirtiness < this.zooMaxDirtiness) {
             this.zooDirtiness++;
         }
     }
@@ -83,7 +100,19 @@ public class Zoo {
         }
     }
 
-    public void VisitorLetIn(Visitors visitor) {
+    public void IncreaseZooAtracive() {
+        if(this.zooDirtiness < this.zooMaxDirtiness) {
+            this.zooAtractive++;
+        }
+    }
+
+    public void DecreaseZooAtracive() {
+        if(this.zooDirtiness > 0) {
+            this.zooAtractive--;
+        }
+    }
+
+/*    public void VisitorLetIn(Visitors visitor) {
         if(this.zooNumberOfActualVisitor < this.zooVisitorsCapacity) {
             if(this.zooCashOffice.CheckVisitor(visitor)) {
                 this.zooNumberOfActualVisitor++;
@@ -93,7 +122,7 @@ public class Zoo {
             Output.Set("Zoo capacity: " + this.zooVisitorsCapacity);
             Output.Set("Visitors in zoo: " + this.zooNumberOfActualVisitor);
         }
-    }
+    }*/
 
     public void VisitorLetOut() {
         this.zooNumberOfActualVisitor--;
@@ -104,7 +133,15 @@ public class Zoo {
         return this.zooNumberOfActualVisitor;
     }
 
-    public int GetZooNumbelOfAnimal() {
+    public int GetZooNumberOfAnimal() {
         return this.animals.size();
+    }
+
+    public int GetZooAnimalCapacity() {
+        return this.zooAnimalsCapacity;
+    }
+
+    public int GetZooLevel() {
+        return this.zooLevel;
     }
 }

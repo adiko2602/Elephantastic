@@ -2,11 +2,18 @@ package Project;
 
 import Project.Visitors.Visitors;
 import Project.Zoo.Zoo;
+import Project.Zoo.ZooManagment;
 
 public class Main {
 
     public static void main(String[] args) {
-        Zoo zoo = new Zoo();
-        zoo.VisitorLetIn(new Visitors());
+        ZooManagment zooManagment = new ZooManagment();
+/*        zooManagment.BuyAnimal();
+        zooManagment.BuyAnimal();
+        zooManagment.BuyAnimal();
+        zooManagment.SellAnimal();*/
+        zooManagment.BuyAnimal();
+        zooManagment.BuyAnimal();
+        zooManagment.SellAnimal();
     }
 }
