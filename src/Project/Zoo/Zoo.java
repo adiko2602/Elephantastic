@@ -11,7 +11,7 @@ public class Zoo {
     private int zooNumberOfActualVisitor = 0;
     private int zooNumberOfFoodVegetable = 0;
     private int zooNumberOfFoodMeat = 0;
-    private int zooDirtines = 0;
+    private int zooDirtiness = 0;
     private int zooAtractive = 0;
     private int zooVisitorsCapacity = 10;
     private int zooAnimalsCapacity = 10;
@@ -47,6 +47,42 @@ public class Zoo {
         }
     }
 
+    public void AddVegetable(int vegetableNumber) {
+        this.zooNumberOfFoodVegetable += vegetableNumber;
+    }
+
+    public void AddMeat(int meatNumber) {
+        this.zooNumberOfFoodMeat += meatNumber;
+    }
+
+    public boolean RemoveVegetable(int vegetableNumber) {
+        if(this.zooNumberOfFoodVegetable >= vegetableNumber && this.zooNumberOfFoodVegetable > 0) {
+            this.zooNumberOfFoodVegetable -= vegetableNumber;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean RemoveMeat(int meatNumber) {
+        if(this.zooNumberOfFoodMeat >= meatNumber && this.zooNumberOfFoodMeat > 0) {
+            this.zooNumberOfFoodMeat -= meatNumber;
+            return true;
+        }
+        return false;
+    }
+
+    public void IncreaseZooDirtiness() {
+        if(this.zooDirtiness < 10) {
+            this.zooDirtiness++;
+        }
+    }
+
+    public void DecreaseZooDirtiness() {
+        if(this.zooDirtiness > 0) {
+            this.zooDirtiness--;
+        }
+    }
+
     public void VisitorLetIn(Visitors visitor) {
         if(this.zooNumberOfActualVisitor < this.zooVisitorsCapacity) {
             if(this.zooCashOffice.CheckVisitor(visitor)) {
@@ -57,5 +93,18 @@ public class Zoo {
             Output.Set("Zoo capacity: " + this.zooVisitorsCapacity);
             Output.Set("Visitors in zoo: " + this.zooNumberOfActualVisitor);
         }
+    }
+
+    public void VisitorLetOut() {
+        this.zooNumberOfActualVisitor--;
+        Output.Set("Visitor come out.");
+    }
+
+    public int GetZooNumberOfActualVisitor() {
+        return this.zooNumberOfActualVisitor;
+    }
+
+    public int GetZooNumbelOfAnimal() {
+        return this.animals.size();
     }
 }
