@@ -10,6 +10,8 @@ public abstract class Animals {
     protected boolean hungry;
     protected int maxFunLevel;
     protected int maxArtactiveLevel;
+    protected int buyValue;
+    protected int sellValue;
 
     public String GetAnimalName() {
         return this.animalName;
@@ -38,6 +40,10 @@ public abstract class Animals {
     public boolean GetAnimalHungry() {
         return this.hungry;
     }
+
+    public int GetAnimalBuyValue() { return this.buyValue; }
+
+    public int GetaAnimalSellValue() { return this.sellValue; }
 
     public void IncreaseAnimalFun() {
         if(this.funLevel < this.maxFunLevel) {

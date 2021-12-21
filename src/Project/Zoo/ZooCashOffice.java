@@ -11,7 +11,7 @@ public class ZooCashOffice {
     private Integer secondPaymentValue = 5;
     private Integer thirdPaymentValue = 10;
 
-    private Integer zooCash = 0;
+    private Integer zooCash = 100000;
 
     public ZooCashOffice() {
             this.paymentOfAge = new HashMap<>();
@@ -27,8 +27,6 @@ public class ZooCashOffice {
             for(int i=65; i<200; i++) {
                 this.paymentOfAge.put(i, this.secondPaymentValue);
             }
-
-        System.out.println(paymentOfAge);
     }
 
     public boolean CheckVisitor(Visitors visitor) {
@@ -41,5 +39,17 @@ public class ZooCashOffice {
             Output.Set("Age of visitor is wrong!");
         }
         return false;
+    }
+
+    public void AddCash(int cash) {
+        this.zooCash += cash;
+    }
+
+    public void LowerCash(int cash) {
+        this.zooCash -= cash;
+    }
+
+    public Integer GetCash() {
+        return this.zooCash;
     }
 }

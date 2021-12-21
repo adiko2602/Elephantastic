@@ -12,8 +12,9 @@ public class Main {
         zooManagment.BuyAnimal();
         zooManagment.BuyAnimal();
         zooManagment.SellAnimal();*/
-        zooManagment.BuyAnimal();
-        zooManagment.BuyAnimal();
-        zooManagment.SellAnimal();
+        //noinspection InfiniteLoopStatement
+        while(true) {
+            zooManagment.Menu();
+        }
     }
 }

@@ -23,11 +23,17 @@ public class Zoo {
 
     }
 
-    public void GetAnimalsList() {
-        int i=1;
-        for(Animals animal: this.animals) {
-            Output.Set("["+ (i++) + "] " + animal.GetAnimalName());
+    public boolean GetAnimalsList() {
+        if(!this.animals.isEmpty()) {
+            int i = 1;
+            for (Animals animal : this.animals) {
+                Output.Set("[" + (i++) + "] " + animal.GetAnimalName());
+            }
+            return true;
+        } else {
+            Output.Set("Zoo is empty!");
         }
+        return false;
     }
 
     public boolean AddAnimalToList(Animals animal) {
@@ -143,5 +149,18 @@ public class Zoo {
 
     public int GetZooLevel() {
         return this.zooLevel;
+    }
+
+    public Animals GetAnimal(int number) {
+        if(!this.animals.isEmpty()) {
+            if(number >= 0 && number < this.animals.size()) {
+                return animals.get(number);
+            } else {
+                Output.Set("Selected number of animal is wrong!");
+            }
+        } else {
+            Output.Set("Zoo is empty!");
+        }
+        return null;
     }
 }
