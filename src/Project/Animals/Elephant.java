@@ -1,15 +1,15 @@
 package Project.Animals;
 
-public class Monkey extends Animals {
-    public Monkey() {
-        this.animalName = "Monkey";
+public class Elephant extends Animals {
+    public Elephant() {
+        this.animalName = "Elephant";
         this.wakeUp = 8;
         this.goToSleep = 22;
         this.buyLevel = 0;
         this.atractiveLevel = 5;
         this.funLevel = 10;
         this.hungry = false;
-        this.sellValue = 100;
-        this.buyValue = 300;
+        this.sellValue = 500;
+        this.buyValue = 1500;
     }
 }
