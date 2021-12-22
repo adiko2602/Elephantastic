@@ -10,24 +10,26 @@ public class Input {
     }
 
     public static int GetInt() {
-        String line = ReadInput();
         int number = -1;
+        String line = ReadInput();
         try {
             number = Integer.parseInt(line);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
+
         return number;
     }
 
     public static double GetDouble() {
-        String line = ReadInput();
         double number = -1.0;
+        String line = ReadInput();
         try {
             number = Double.parseDouble(line);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
+
         return number;
     }
 
@@ -35,7 +37,7 @@ public class Input {
         String line = "";
         try {
             line = readInput.nextLine();
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return line;

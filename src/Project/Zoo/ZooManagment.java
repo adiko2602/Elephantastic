@@ -5,23 +5,32 @@ import Project.Animals.Elephant;
 import Project.Animals.Monkey;
 import Project.Input;
 import Project.Output;
+import Project.Timer;
 import Project.Workers.Workers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
-public class ZooManagment {
-    private Zoo zoo = new Zoo();
-    private ZooCashOffice zooCashOffice = new ZooCashOffice();
+public class ZooManagment implements Runnable {
+
+    private Zoo zoo;
+    private ZooCashOffice zooCashOffice;
+    private Timer timer;
     private ArrayList<Workers> workers = new ArrayList<>();
 
     private List<Class<?>> animalsToBuy = Arrays.asList(new Class<?>[]
             { Monkey.class, Elephant.class }
     );
 
-    public ZooManagment() {
+    public void run() {
+        Menu();
+    }
+
+    public ZooManagment(Timer timer) {
+        this.zoo = new Zoo();
+        this.zooCashOffice = new ZooCashOffice();
+        this.timer = timer;
     }
 
     public void BuyAnimal() {
@@ -90,31 +99,41 @@ public class ZooManagment {
         }
     }
 
-    public void Menu() {
-        Output.Set("ZOO MENU");
-        Output.Set("Select what you want to do: ");
-        Output.Set("[1] Buy animal");
-        Output.Set("[2] Sell animal");
-        Output.Set("[3] Feed animal");
-        Output.Set("[4] Play with animal");
-        Output.Set("[5] Hire worker");
-        Output.Set("[6] Fired worker");
-        Output.Set("[7] List all workers");
-        Output.Set("[8] List all animals");
-        Output.Set("[9] Clean zoo");
+    public void EndDay() {
+        Output.Set("End day");
+    }
 
-        int input = Input.GetInt();
-        switch (input) {
-            case 1 -> BuyAnimal();
-            case 2 -> SellAnimal();
-            case 3 -> FeedAnimal();
-            case 4 -> Output.Set("Play with");
-            case 5 -> HireWorker();
-            case 6 -> FiredWorker();
-            case 7 -> ListOfWorkers();
-            case 8 -> this.zoo.GetAnimalsList();
-            case 9 -> Output.Set("Clean");
-            default -> Output.Set("Wrong number selected.");
+    public void Menu() {
+        //noinspection InfiniteLoopStatement
+        while(true) {
+            Output.Set("ZOO MENU");
+            Output.Set("Select what you want to do: ");
+            Output.Set("[1] Buy animal");
+            Output.Set("[2] Sell animal");
+            Output.Set("[3] Feed animal");
+            Output.Set("[4] Play with animal");
+            Output.Set("[5] Hire worker");
+            Output.Set("[6] Fired worker");
+            Output.Set("[7] List all workers");
+            Output.Set("[8] List all animals");
+            Output.Set("[9] Clean zoo");
+            Output.Set("[0] Check time");
+
+            int input = Input.GetInt();
+            switch (input) {
+                case 1 -> BuyAnimal();
+                case 2 -> SellAnimal();
+                case 3 -> FeedAnimal();
+                case 4 -> Output.Set("Play with");
+                case 5 -> HireWorker();
+                case 6 -> FiredWorker();
+                case 7 -> ListOfWorkers();
+                case 8 -> this.zoo.GetAnimalsList();
+                case 9 -> Output.Set("Clean");
+                case 0 -> this.timer.GetActualTime();
+                default -> Output.Set("Wrong number selected.");
+
+            }
         }
     }
 }
