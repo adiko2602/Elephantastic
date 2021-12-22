@@ -2,7 +2,7 @@ package Project.Zoo;
 
 import Project.Animals.Animals;
 import Project.Output;
-import Project.Visitors.Visitors;
+import Project.Visitors.Visitor;
 
 import java.util.ArrayList;
 

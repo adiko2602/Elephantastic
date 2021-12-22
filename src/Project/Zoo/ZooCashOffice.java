@@ -1,7 +1,7 @@
 package Project.Zoo;
 
 import Project.Output;
-import Project.Visitors.Visitors;
+import Project.Visitors.Visitor;
 
 import java.util.HashMap;
 
@@ -29,7 +29,7 @@ public class ZooCashOffice {
             }
     }
 
-    public boolean CheckVisitor(Visitors visitor) {
+    public boolean CheckVisitor(Visitor visitor) {
         Integer age = visitor.GetAge();
         if(this.paymentOfAge.containsKey(age)) {
             this.zooCash += this.paymentOfAge.get(age);

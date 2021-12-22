@@ -1,7 +1,9 @@
-package Project;
+package Project.Timer;
+
+import Project.Output;
 
 public class Timer implements Runnable {
-    private int time = 0;
+    private int time = 770;
     private int day = 1;
     private boolean endDay = false;
 
@@ -27,7 +29,7 @@ public class Timer implements Runnable {
     }
 
     private boolean CheckTime() {
-        return this.time < 5;
+        return this.time < 1440;
     }
 
     private void ResetTime() {
@@ -45,11 +47,26 @@ public class Timer implements Runnable {
     }
 
     public void GetActualTime() {
-        int hours = this.time / 3600;
-        int minutes = (this.time % 3600) / 60;
-        int seconds = this.time % 60;
-        String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        int hours = (this.time % 3600) / 60;
+        int minutes = this.time % 60;
+        String timeString = String.format("%02d:%02d", hours, minutes);
 
         Output.Set("Day: " + this.day + " \nTime: " + timeString);
+    }
+
+    public int GetActualHour() {
+        return (this.time%3600)/60;
+    }
+
+    public int GetActualMinute() {
+        return this.time%60;
+    }
+
+    /*public int GetActualSecond() {
+        return ;
+    }
+*/
+    public int GetActualDay() {
+        return this.day;
     }
 }

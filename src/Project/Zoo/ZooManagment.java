@@ -5,7 +5,8 @@ import Project.Animals.Elephant;
 import Project.Animals.Monkey;
 import Project.Input;
 import Project.Output;
-import Project.Timer;
+import Project.Timer.Timer;
+import Project.Visitors.Visitor;
 import Project.Workers.Workers;
 
 import java.util.ArrayList;
@@ -101,6 +102,15 @@ public class ZooManagment implements Runnable {
 
     public void EndDay() {
         Output.Set("End day");
+    }
+
+    public void LetIn(Visitor visitor) {
+        Output.Set("Let in");
+    }
+
+    public int GetAtractive() {
+        Output.Set("End day");
+        return 3;
     }
 
     public void Menu() {
