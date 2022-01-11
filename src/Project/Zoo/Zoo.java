@@ -14,7 +14,7 @@ public class Zoo {
     private int zooMaxAtractive = 0;
     private int zooMaxDirtiness = 0;
     private int zooDirtiness = 0;
-    private int zooAtractive = 0;
+    private int zooAtractiveness = 0;
     private int zooVisitorsCapacity = 0;
     private int zooAnimalsCapacity = 3;
     private int zooLevel = 0;
@@ -106,15 +106,15 @@ public class Zoo {
         }
     }
 
-    public void IncreaseZooAtracive() {
+    public void IncreaseZooAttraciveness() {
         if(this.zooDirtiness < this.zooMaxDirtiness) {
-            this.zooAtractive++;
+            this.zooAtractiveness++;
         }
     }
 
-    public void DecreaseZooAtracive() {
+    public void DecreaseZooAttraciveness() {
         if(this.zooDirtiness > 0) {
-            this.zooAtractive--;
+            this.zooAtractiveness--;
         }
     }
 
