@@ -70,29 +70,29 @@ public class Zoo {
         return false;
     }
 
-    public void AddVegetable(int vegetableNumber) {
+/*    public void AddVegetable(int vegetableNumber) {
         this.zooNumberOfFoodVegetable += vegetableNumber;
-    }
-
+    }*/
+/*
     public void AddMeat(int meatNumber) {
         this.zooNumberOfFoodMeat += meatNumber;
-    }
+    }*/
 
-    public boolean RemoveVegetable(int vegetableNumber) {
+/*    public boolean RemoveVegetable(int vegetableNumber) {
         if(this.zooNumberOfFoodVegetable >= vegetableNumber && this.zooNumberOfFoodVegetable > 0) {
             this.zooNumberOfFoodVegetable -= vegetableNumber;
             return true;
         }
         return false;
-    }
+    }*/
 
-    public boolean RemoveMeat(int meatNumber) {
+/*    public boolean RemoveMeat(int meatNumber) {
         if(this.zooNumberOfFoodMeat >= meatNumber && this.zooNumberOfFoodMeat > 0) {
             this.zooNumberOfFoodMeat -= meatNumber;
             return true;
         }
         return false;
-    }
+    }*/
 
     public void IncreaseZooDirtiness() {
         if(this.zooDirtiness < this.zooMaxDirtiness) {
