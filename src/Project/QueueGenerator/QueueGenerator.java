@@ -3,14 +3,14 @@ package Project.QueueGenerator;
 import Project.Output;
 import Project.Timer.Timer;
 import Project.Visitors.Visitor;
-import Project.Zoo.ZooManagment;
+import Project.Zoo.ZooManagement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class QueueGenerator implements Runnable {
     private Timer timer;
-    private ZooManagment zooManagment;
+    private ZooManagement zooManagment;
     private int visitorNumber;
     private int minVisitorNumber = 10;
     private int visitorNumberStep = 10;
@@ -25,12 +25,12 @@ public class QueueGenerator implements Runnable {
 
     private ArrayList<Visitor> visitorsQueue = new ArrayList<>();
 
-    public QueueGenerator(Timer timer, ZooManagment zooManagment) {
+    public QueueGenerator(Timer timer, ZooManagement zooManagment) {
         this.timer = timer;
         this.zooManagment = zooManagment;
         this.actualDay = this.timer.GetActualDay();
         this.actualHour = this.timer.GetActualHour();
-        this.actualAtractive = this.zooManagment.GetAtractive();
+        this.actualAtractive = this.zooManagment.GetAttractiveness();
         this.visitorNumber = this.minVisitorNumber;
         Generate();
     }
@@ -56,12 +56,12 @@ public class QueueGenerator implements Runnable {
     private void CheckDay() {
         if(this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
-            if(this.actualAtractive < this.zooManagment.GetAtractive()) {
-                this.actualAtractive = this.zooManagment.GetAtractive();
+            if(this.actualAtractive < this.zooManagment.GetAttractiveness()) {
+                this.actualAtractive = this.zooManagment.GetAttractiveness();
                 this.visitorNumber += this.visitorNumberStep;
             }
-            if(this.actualAtractive > this.zooManagment.GetAtractive()) {
-                this.actualAtractive = this.zooManagment.GetAtractive();
+            if(this.actualAtractive > this.zooManagment.GetAttractiveness()) {
+                this.actualAtractive = this.zooManagment.GetAttractiveness();
                 if(this.visitorNumber >= this.minVisitorNumber) {
                     this.visitorNumber -= this.visitorNumberStep;
                 }

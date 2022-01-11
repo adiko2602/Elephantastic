@@ -3,29 +3,29 @@ package Project;
 import Project.QueueGenerator.QueueGenerator;
 import Project.Timer.Timer;
 import Project.Visitors.Visitor;
-import Project.Zoo.ZooManagment;
+import Project.Zoo.ZooManagement;
 
 /*test*/
 public class Main {
 
     public static void main(String[] args) {
         Timer timer = new Timer();
-        ZooManagment zooManagment = new ZooManagment(timer);
-        QueueGenerator queueGenerator = new QueueGenerator(timer, zooManagment);
+        ZooManagement zooManagement = new ZooManagement(timer);
+        QueueGenerator queueGenerator = new QueueGenerator(timer, zooManagement);
 
         Thread timerThread = new Thread(timer);
-        Thread zooManagmentThread = new Thread(zooManagment);
+        Thread zooManagementThread = new Thread(zooManagement);
         Thread queueGeneratorThread = new Thread(queueGenerator);
 
         timerThread.start();
-        zooManagmentThread.start();
+        zooManagementThread.start();
         queueGeneratorThread.start();
 
         //noinspection InfiniteLoopStatement
         while (true) {
             if(timer.GetEndDay()) {
                 timer.SetEndDay(false);
-                zooManagment.EndDay();
+                zooManagement.EndDay();
             } else {
                 try {
                     Thread.sleep(1);
@@ -35,7 +35,7 @@ public class Main {
             }
 
             if(queueGenerator.CheckIfIsVisitor()) {
-                zooManagment.LetIn(queueGenerator.GetVisitor());
+                zooManagement.LetIn(queueGenerator.GetVisitor());
             }
         }
     }

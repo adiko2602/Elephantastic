@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ZooManagment implements Runnable {
+public class ZooManagement implements Runnable {
 
     private Zoo zoo;
     private ZooCashOffice zooCashOffice;
@@ -26,7 +26,7 @@ public class ZooManagment implements Runnable {
         Menu();
     }
 
-    public ZooManagment(Timer timer) {
+    public ZooManagement(Timer timer) {
         this.zoo = new Zoo();
         this.zooCashOffice = new ZooCashOffice();
         this.timer = timer;
@@ -106,7 +106,7 @@ public class ZooManagment implements Runnable {
         Output.Set("Let in");
     }
 
-    public int GetAtractive() {
+    public int GetAttractiveness() {
         Output.Set("End day");
         return 3;
     }
