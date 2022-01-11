@@ -6,7 +6,7 @@ import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
 
 
-public class Main {
+public class Main { //hah
 
     public static void main(String[] args) {
         Timer timer = new Timer();
