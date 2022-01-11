@@ -11,10 +11,10 @@ public class Zoo {
     private int zooNumberOfActualVisitor = 0;
     private int zooNumberOfFoodVegetable = 0;
     private int zooNumberOfFoodMeat = 0;
-    private int zooMaxAtractive = 0;
+    private int zooMaxAttractiveness = 0;
     private int zooMaxDirtiness = 0;
     private int zooDirtiness = 0;
-    private int zooAtractiveness = 0;
+    private int zooAttractiveness = 0;
     private int zooVisitorsCapacity = 0;
     private int zooAnimalsCapacity = 3;
     private int zooLevel = 0;
@@ -106,15 +106,15 @@ public class Zoo {
         }
     }
 
-    public void IncreaseZooAttraciveness() {
+    public void IncreaseZooAttractiveness() {
         if(this.zooDirtiness < this.zooMaxDirtiness) {
-            this.zooAtractiveness++;
+            this.zooAttractiveness++;
         }
     }
 
-    public void DecreaseZooAttraciveness() {
+    public void DecreaseZooAttractiveness() {
         if(this.zooDirtiness > 0) {
-            this.zooAtractiveness--;
+            this.zooAttractiveness--;
         }
     }
 
