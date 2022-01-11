@@ -1,8 +1,6 @@
 package Project.Zoo;
 
-import Project.Animals.Animals;
-import Project.Animals.Elephant;
-import Project.Animals.Monkey;
+import Project.Animals.*;
 import Project.Input;
 import Project.Output;
 import Project.Timer.Timer;
@@ -21,7 +19,7 @@ public class ZooManagment implements Runnable {
     private ArrayList<Workers> workers = new ArrayList<>();
 
     private List<Class<?>> animalsToBuy = Arrays.asList(new Class<?>[]
-            { Monkey.class, Elephant.class }
+            { Chimpanzee.class, AfricanElephant.class, BoaSnake.class, AfricanLion.class, EuropeanBison.class, Flamingo.class, Horse.class, Penguin.class, RedPanda.class, TigerShark.class}
     );
 
     public void run() {
