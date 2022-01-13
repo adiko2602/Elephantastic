@@ -42,8 +42,8 @@ public class Zoo {
     public void RemoveAnimalFromList(int animalNumber) {                        // Method for remove animal from zoo
         if(!this.animals.isEmpty()) {                                           // Check if zoo is empty
             if(animalNumber >= 0 && animalNumber < this.animals.size()) {       // Check if number is correct
-                this.animals.remove(animalNumber);                              // Remove animal from zoo at index
                 Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");     // Output
+                this.animals.remove(animalNumber);                              // Remove animal from zoo at index
             } else {
                 Output.Set("Selected number of animal is wrong!");               // Output
             }
