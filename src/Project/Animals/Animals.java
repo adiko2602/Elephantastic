@@ -1,20 +1,35 @@
 package Project.Animals;
 
+import Project.Output;
+
 public abstract class Animals {
     protected String animalName;
     protected int wakeUp;
     protected int goToSleep;
-    protected int buyLevel;
-    protected int atractiveLevel;
-    protected int funLevel;
-    protected boolean hungry;
-    protected int maxFunLevel;
-    protected int maxArtactiveLevel;
+    protected int cleanLevel = 5;
+    protected int funLevel = 5;
+    protected boolean hungry = true;
+    protected int maxFunLevel = 10;
+    protected int maxCleanLevel = 10;
     protected int buyValue;
     protected int sellValue;
+    protected int withoutFood;
 
     public String GetAnimalName() {
         return this.animalName;
+    }
+
+    public void SetAnimalHungry(boolean state) {
+        this.hungry = state;
+    }
+
+    public void AnimalStats() {
+        Output.Set("Name: " + GetAnimalName() + "\n" +
+                    "Fun: " + GetAnimalFun() + "\n" +
+                    "Clean: " + GetAnimalCleanLevel() + "\n" +
+                    "Hungry: " + GetAnimalHungry() + "\n" +
+                    "Wakeup: " + GetAnimalWakeUp() + "\n" +
+                    "Go to sleep: " + GetAnimalGoToSleep());
     }
 
     public int GetAnimalWakeUp() {
@@ -25,12 +40,8 @@ public abstract class Animals {
         return this.goToSleep;
     }
 
-    public int GetAnimalBuyLevel() {
-        return this.buyLevel;
-    }
-
-    public int GetAnimalAtractive() {
-        return this.atractiveLevel;
+    public int GetAnimalCleanLevel() {
+        return this.cleanLevel;
     }
 
     public int GetAnimalFun() {
@@ -43,7 +54,9 @@ public abstract class Animals {
 
     public int GetAnimalBuyValue() { return this.buyValue; }
 
-    public int GetaAnimalSellValue() { return this.sellValue; }
+    public int GetAnimalSellValue() { return this.sellValue; }
+
+    public int GetAnimalWithoutFood() { return this.withoutFood; }
 
     public void IncreaseAnimalFun() {
         if(this.funLevel < this.maxFunLevel) {
@@ -57,15 +70,23 @@ public abstract class Animals {
         }
     }
 
-    public void IncreaseAnimalAtractive() {
-        if(this.atractiveLevel < this.maxArtactiveLevel) {
-            this.atractiveLevel++;
+    public void IncreaseAnimalClean() {
+        if(this.cleanLevel < this.maxCleanLevel) {
+            this.cleanLevel++;
         }
     }
 
-    public void DecreaseAnimalAtractive() {
-        if(this.atractiveLevel > 0) {
-            this.atractiveLevel--;
+    public void DecreaseAnimalClean() {
+        if(this.cleanLevel > 0) {
+            this.cleanLevel--;
         }
+    }
+
+    public void IncreaseAnimalWithoutFood() {
+        this.withoutFood++;
+    }
+
+    public void ResetAnimalWithoutFood() {
+        this.withoutFood = 0;
     }
 }
