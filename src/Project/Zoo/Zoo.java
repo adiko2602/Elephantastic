@@ -2,165 +2,85 @@ package Project.Zoo;
 
 import Project.Animals.Animals;
 import Project.Output;
-import Project.Visitors.Visitor;
-
 import java.util.ArrayList;
 
 public class Zoo {
-    private ArrayList<Animals> animals = new ArrayList<>();
-    private int zooNumberOfActualVisitor = 0;
-    private int zooNumberOfFoodVegetable = 0;
-    private int zooNumberOfFoodMeat = 0;
-    private int zooMaxAttractiveness = 0;
-    private int zooMaxDirtiness = 0;
-    private int zooDirtiness = 0;
-    private int zooAttractiveness = 0;
-    private int zooVisitorsCapacity = 0;
-    private int zooAnimalsCapacity = 3;
-    private int zooLevel = 0;
+    private ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
+    private int zooNumberOfActualVisitor = 0;                       // Number of visitors in zoo
+    private int zooDirtiness = 0;                                   // Number of zoo dirtiness
+    private int zooAttractiveness = 0;                              // Number of zoo attractiveness
 
-    public Zoo() {
-
-    }
-
-    public boolean GetAnimalsList() {
-        if(!this.animals.isEmpty()) {
-            int i = 1;
-            for (Animals animal : this.animals) {
-                Output.Set("[" + (i++) + "] " + animal.GetAnimalName());
+    public void GetAnimalsList() {                                          // Method for print all animals in zoo
+        if(!this.animals.isEmpty()) {                                       // Check if list is empty
+            int i = 1;                                                      // Int for interate
+            for (Animals animal : this.animals) {                           // for loop for all animals in zoo
+                Output.Set("[" + (i++) + "] " + animal.GetAnimalName());    // Output
             }
-            return true;
         } else {
-            Output.Set("Zoo is empty!");
+            Output.Set("Zoo is empty!");                            // If zoo is empty
         }
-        return false;
     }
 
-    public boolean AddAnimalToList(Animals animal) {
-        if(animal.GetAnimalBuyLevel() <= this.zooLevel) {
-            if (this.animals.size() < this.zooAnimalsCapacity) {
-                this.animals.add(animal);
-                Output.Set("Animal: " + animal.GetAnimalName() + " was added to zoo.");
-                return true;
+    public Animals GetAnimal(int number) {                          // Method for pick animal from zoo
+        if(!this.animals.isEmpty()) {                               // Check if zoo is empty
+            if(number >= 0 && number < this.animals.size()) {       // Check if selected number is correct
+                return animals.get(number);                         // Get animal at index
             } else {
-                Output.Set("Maximum zoo capacity is reached!");
-                Output.Set("Zoo capacity: " + this.zooAnimalsCapacity);
-                Output.Set("Animals in zoo: " + this.animals.size());
+                Output.Set("Selected number of animal is wrong!");  // If wrong number
             }
         } else {
-            Output.Set("Zoo level is to low for " + animal.GetAnimalName());
-            Output.Set("Zoo level: " + this.zooLevel);
-            Output.Set(animal.GetAnimalName() + " level: " + animal.GetAnimalBuyLevel());
+            Output.Set("Zoo is empty!");                            // If empty
         }
-        return false;
+        return null;
     }
 
-    public boolean RemoveAnimalFromList(int animalNumber) {
-        if(!this.animals.isEmpty()) {
-            if(animalNumber >= 0 && animalNumber < this.animals.size()) {
-                Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");
-                this.animals.remove(animalNumber);
-                return true;
+    public void AddAnimalToList(Animals animal) {                               // Method for add animal to zoo
+        this.animals.add(animal);                                               // Add animal
+        Output.Set("Animal: " + animal.GetAnimalName() + " was added to zoo."); // Output
+    }
+
+    public void RemoveAnimalFromList(int animalNumber) {                        // Method for remove animal from zoo
+        if(!this.animals.isEmpty()) {                                           // Check if zoo is empty
+            if(animalNumber >= 0 && animalNumber < this.animals.size()) {       // Check if number is correct
+                this.animals.remove(animalNumber);                              // Remove animal from zoo at index
+                Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");     // Output
             } else {
-                Output.Set("Selected number of animal is wrong!");
+                Output.Set("Selected number of animal is wrong!");               // Output
             }
         } else {
-            Output.Set("Zoo is empty!");
-        }
-        return false;
-    }
-
-/*    public void AddVegetable(int vegetableNumber) {
-        this.zooNumberOfFoodVegetable += vegetableNumber;
-    }*/
-/*
-    public void AddMeat(int meatNumber) {
-        this.zooNumberOfFoodMeat += meatNumber;
-    }*/
-
-/*    public boolean RemoveVegetable(int vegetableNumber) {
-        if(this.zooNumberOfFoodVegetable >= vegetableNumber && this.zooNumberOfFoodVegetable > 0) {
-            this.zooNumberOfFoodVegetable -= vegetableNumber;
-            return true;
-        }
-        return false;
-    }*/
-
-/*    public boolean RemoveMeat(int meatNumber) {
-        if(this.zooNumberOfFoodMeat >= meatNumber && this.zooNumberOfFoodMeat > 0) {
-            this.zooNumberOfFoodMeat -= meatNumber;
-            return true;
-        }
-        return false;
-    }*/
-
-    public void IncreaseZooDirtiness() {
-        if(this.zooDirtiness < this.zooMaxDirtiness) {
-            this.zooDirtiness++;
+            Output.Set("Zoo is empty!");                                         // Output
         }
     }
 
-    public void DecreaseZooDirtiness() {
-        if(this.zooDirtiness > 0) {
-            this.zooDirtiness--;
-        }
+    public void IncreaseZooDirtiness() {        // Method for zoo dirtiness increase
+        this.zooDirtiness++;
     }
 
-    public void IncreaseZooAttractiveness() {
-        if(this.zooDirtiness < this.zooMaxDirtiness) {
-            this.zooAttractiveness++;
-        }
+    public void DecreaseZooDirtiness() {        // Method for zoo dirtiness decrease
+        this.zooDirtiness--;
     }
 
-    public void DecreaseZooAttractiveness() {
-        if(this.zooDirtiness > 0) {
-            this.zooAttractiveness--;
-        }
+    public void IncreaseZooAttractiveness() {   // Method for zoo attractiveness increase
+        this.zooAttractiveness++;
     }
 
-/*    public void VisitorLetIn(Visitors visitor) {
-        if(this.zooNumberOfActualVisitor < this.zooVisitorsCapacity) {
-            if(this.zooCashOffice.CheckVisitor(visitor)) {
-                this.zooNumberOfActualVisitor++;
-            }
-        } else {
-            Output.Set("Maximum zoo capacity is reached!");
-            Output.Set("Zoo capacity: " + this.zooVisitorsCapacity);
-            Output.Set("Visitors in zoo: " + this.zooNumberOfActualVisitor);
-        }
-    }*/
+    public void DecreaseZooAttractiveness() {   // Method for zoo attractiveness increase
+        this.zooAttractiveness--;
+    }
 
-    public void VisitorLetOut() {
+    public void VisitorLetIn() {                // Method for visitor number increase
+        this.zooNumberOfActualVisitor++;
+    }
+
+    public void VisitorLetOut() {               // Method for visitor number decrease
         this.zooNumberOfActualVisitor--;
-        Output.Set("Visitor come out.");
     }
 
-    public int GetZooNumberOfActualVisitor() {
+    public int GetZooNumberOfActualVisitor() {  // Method for visitor actual visitors number in zoo
         return this.zooNumberOfActualVisitor;
     }
 
-    public int GetZooNumberOfAnimal() {
+    public int GetZooNumberOfAnimal() {         // Method for visitor actual animals number in zoo
         return this.animals.size();
-    }
-
-    public int GetZooAnimalCapacity() {
-        return this.zooAnimalsCapacity;
-    }
-
-    public int GetZooLevel() {
-        return this.zooLevel;
-    }
-
-    public Animals GetAnimal(int number) {
-        if(!this.animals.isEmpty()) {
-            if(number >= 0 && number < this.animals.size()) {
-                return animals.get(number);
-            } else {
-                Output.Set("Selected number of animal is wrong!");
-            }
-        } else {
-            Output.Set("Zoo is empty!");
-        }
-        return null;
     }
 }
