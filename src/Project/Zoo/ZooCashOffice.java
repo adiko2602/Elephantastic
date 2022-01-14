@@ -33,7 +33,6 @@ public class ZooCashOffice {
         Integer age = visitor.GetAge();
         if(this.paymentOfAge.containsKey(age)) {
             this.zooCash += this.paymentOfAge.get(age);
-            Output.Set("Visitor pay: " + this.paymentOfAge.get(age));
             return true;
         } else {
             Output.Set("Age of visitor is wrong!");

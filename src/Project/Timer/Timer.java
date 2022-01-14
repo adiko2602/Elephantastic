@@ -3,7 +3,8 @@ package Project.Timer;
 import Project.Output;
 
 public class Timer implements Runnable {
-    private int time = 770;
+    private long runSeconds = 0;
+    private long seconds = 0;
     private int day = 1;
     private boolean endDay = false;
 
@@ -11,31 +12,31 @@ public class Timer implements Runnable {
     public void run() {
         //noinspection InfiniteLoopStatement
         while(true) {
-            if (CheckTime()) {
-                AddMinute();
-            } else {
-                ResetTime();
-            }
+            CountSeconds();
+            CheckEndDay();
         }
     }
 
-    private void AddMinute() {
-        this.time++;
+    private void CountSeconds() {
         try {
             Thread.sleep(1000);
         } catch (Exception exception) {
             Output.Set(exception.getMessage());
         }
+        this.seconds++;
+        this.runSeconds++;
     }
 
-    private boolean CheckTime() {
-        return this.time < 1440;
+    private void CheckEndDay() {
+        if(this.seconds == 1440) {
+            this.seconds = 0;
+            this.endDay = true;
+            this.day++;
+        }
     }
 
-    private void ResetTime() {
-        this.time = 0;
-        this.day++;
-        this.endDay = true;
+    public long CheckTime() {
+        return this.runSeconds;
     }
 
     public void SetEndDay(boolean state) {
@@ -47,25 +48,21 @@ public class Timer implements Runnable {
     }
 
     public void GetActualTime() {
-        int hours = (this.time % 3600) / 60;
-        int minutes = this.time % 60;
+        int hours = GetActualHour();
+        int minutes = GetActualMinute();
         String timeString = String.format("%02d:%02d", hours, minutes);
 
         Output.Set("Day: " + this.day + " \nTime: " + timeString);
     }
 
     public int GetActualHour() {
-        return (this.time%3600)/60;
+        return (int)(this.seconds%3600)/60;
     }
 
     public int GetActualMinute() {
-        return this.time%60;
+        return (int)this.seconds%60;
     }
 
-    /*public int GetActualSecond() {
-        return ;
-    }
-*/
     public int GetActualDay() {
         return this.day;
     }

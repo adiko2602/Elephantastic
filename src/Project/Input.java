@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class Input {
     private static Scanner readInput = new Scanner(System.in);
 
+    public static void GetEnter() {
+        ReadInput();
+    }
+
     public static String GetString() {
         return ReadInput();
     }
