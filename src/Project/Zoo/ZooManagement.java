@@ -19,7 +19,8 @@ public class ZooManagement implements Runnable {
     private ArrayList<Workers> workers = new ArrayList<>();
 
     private List<Class<?>> animalsToBuy = Arrays.asList(new Class<?>[]
-            { Chimpanzee.class, AfricanElephant.class, BoaSnake.class, AfricanLion.class, EuropeanBison.class, Flamingo.class, Horse.class, Penguin.class, RedPanda.class, TigerShark.class}
+            { Chimpanzee.class, AfricanElephant.class, BoaSnake.class, AfricanLion.class, EuropeanBison.class,
+                    Flamingo.class, Horse.class, Penguin.class, RedPanda.class, TigerShark.class}
     );
 
     public void run() {
