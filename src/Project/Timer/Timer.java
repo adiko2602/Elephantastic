@@ -39,8 +39,8 @@ public class Timer implements Runnable {
         return this.runSeconds;
     }
 
-    public void SetEndDay(boolean state) {
-        this.endDay = state;
+    public void SetEndDay() {
+        this.endDay = false;
     }
 
     public boolean GetEndDay() {

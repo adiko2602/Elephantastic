@@ -24,7 +24,7 @@ public class Main { //hah
         //noinspection InfiniteLoopStatement
         while (true) {
             if(timer.GetEndDay()) {
-                timer.SetEndDay(false);
+                timer.SetEndDay();
                 zooManagement.EndDay();
             } else {
                 try {
