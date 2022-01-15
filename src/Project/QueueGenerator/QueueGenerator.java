@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class QueueGenerator implements Runnable {
     private Timer timer;
-    private ZooManagement zooManagment;
+    private ZooManagement zooManagement;
     private int visitorNumber;
     private int minVisitorNumber = 10;
     private int visitorNumberStep = 10;
@@ -19,7 +19,7 @@ public class QueueGenerator implements Runnable {
     private int actualDay;
     private int actualHour;
 
-    private int actualAtractive;
+    private int actualAttractiveness;
 
     private int[] hoursMultiplier = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 6, 6, 6, 5, 4, 4, 3, 1, 1, 1, 1 };
 
@@ -27,10 +27,10 @@ public class QueueGenerator implements Runnable {
 
     public QueueGenerator(Timer timer, ZooManagement zooManagment) {
         this.timer = timer;
-        this.zooManagment = zooManagment;
+        this.zooManagement = zooManagment;
         this.actualDay = this.timer.GetActualDay();
         this.actualHour = this.timer.GetActualHour();
-        this.actualAtractive = this.zooManagment.GetAttractiveness();
+        this.actualAttractiveness = this.zooManagement.GetAttractiveness();
         this.visitorNumber = this.minVisitorNumber;
         Generate();
     }
@@ -56,12 +56,12 @@ public class QueueGenerator implements Runnable {
     private void CheckDay() {
         if(this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
-            if(this.actualAtractive < this.zooManagment.GetAttractiveness()) {
-                this.actualAtractive = this.zooManagment.GetAttractiveness();
+            if(this.actualAttractiveness < this.zooManagement.GetAttractiveness()) {
+                this.actualAttractiveness = this.zooManagement.GetAttractiveness();
                 this.visitorNumber += this.visitorNumberStep;
             }
-            if(this.actualAtractive > this.zooManagment.GetAttractiveness()) {
-                this.actualAtractive = this.zooManagment.GetAttractiveness();
+            if(this.actualAttractiveness > this.zooManagement.GetAttractiveness()) {
+                this.actualAttractiveness = this.zooManagement.GetAttractiveness();
                 if(this.visitorNumber >= this.minVisitorNumber) {
                     this.visitorNumber -= this.visitorNumberStep;
                 }
@@ -87,7 +87,7 @@ public class QueueGenerator implements Runnable {
 
     private void Generate() {
         Output.Set("Generate");
-        int r = this.visitorNumber*this.hoursMultiplier[this.actualHour]*this.actualAtractive;
+        int r = this.visitorNumber*this.hoursMultiplier[this.actualHour]*this.actualAttractiveness;
         for(int i = 0; i<r; i++) {
             visitorsQueue.add(new Visitor());
         }
