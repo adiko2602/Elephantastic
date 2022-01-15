@@ -25,11 +25,11 @@ public abstract class Animals {
 
     public void AnimalStats() {
         Output.Set("Name: " + GetAnimalName() + "\n" +
-                    "Fun: " + GetAnimalFun() + "\n" +
-                    "Clean: " + GetAnimalCleanLevel() + "\n" +
-                    "Hungry: " + GetAnimalHungry() + "\n" +
-                    "Wakeup: " + GetAnimalWakeUp() + "\n" +
-                    "Go to sleep: " + GetAnimalGoToSleep());
+                    "Fun level: " + GetAnimalFun() + "\n" +
+                    "Clean level: " + GetAnimalCleanLevel() + "\n" +
+                    "Hungry level: " + GetAnimalHungry() + "\n" +
+                    "Wake up time: " + GetAnimalWakeUp() + "\n" +
+                    "Going to sleep time: " + GetAnimalGoToSleep());
     }
 
     public int GetAnimalWakeUp() {

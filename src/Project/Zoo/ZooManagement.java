@@ -31,8 +31,8 @@ public class ZooManagement implements Runnable {
     }
 
     public void BuyAnimal() {
+        Output.Set("\nSelect an animal you would like to buy: ");
         ListOfAnimalsToBuy();
-        Output.Set("Select animal to buy: ");
         int numberSelected = Input.GetInt() - 1;
         if(numberSelected >= 0 && numberSelected < this.animalsToBuy.size()) {
             try {
@@ -55,8 +55,8 @@ public class ZooManagement implements Runnable {
     }
 
     public void SellAnimal() {
+        Output.Set("\nSelect an animal you would like to sell: ");
         this.zoo.GetAnimalsList();
-        Output.Set("Select animal to sell: ");
         int numberSelected = Input.GetInt() - 1;
         Animals animal = this.zoo.GetAnimal(numberSelected);
         if (!(animal == null)) {
@@ -102,7 +102,7 @@ public class ZooManagement implements Runnable {
             Animals animal = this.zoo.GetAnimal(i);
 
             if(animal.GetAnimalWithoutFood() > 2) {
-                Output.Set("Animal: " + animal.GetAnimalName() + " die.");
+                Output.Set("Animal: " + animal.GetAnimalName() + " died.");
                 this.zoo.RemoveAnimalFromList(i);
             } else {
                 if (animal.GetAnimalFun() > 5)
@@ -134,8 +134,8 @@ public class ZooManagement implements Runnable {
     }
 
     public void ShowAnimalStats() {
+        Output.Set("Select which animal statistics you would like to see: ");
         this.zoo.GetAnimalsList();
-        Output.Set("Select animal to show stats: ");
         int numberSelected = Input.GetInt() - 1;
         Animals animal = this.zoo.GetAnimal(numberSelected);
         if (!(animal == null)) {
@@ -161,36 +161,64 @@ public class ZooManagement implements Runnable {
     public void Menu() {
         //noinspection InfiniteLoopStatement
         while(true) {
-            Output.Set("\nPress enter...\n");
+            Output.Set("\nPress enter...");
             Input.GetEnter();
             Output.Set("ZOO MENU");
-            Output.Set("Select what you want to do: ");
-            Output.Set("[1] Buy animal");
-            Output.Set("[2] Sell animal");
-            Output.Set("[3] Feed animal");
-            Output.Set("[4] Play with animal");
-            Output.Set("[5] Hire worker");
-            Output.Set("[6] Fired worker");
-            Output.Set("[7] List all workers");
-            Output.Set("[8] List all animals");
-            Output.Set("[9] Clean zoo");
-            Output.Set("[0] Check time");
+            Output.Set("What would you like to do?: ");
+            Output.Set("[1] Manage your animals");
+            Output.Set("[2] Manage your workers");
+            Output.Set("[3] Manage your zoo");
+            Output.Set("[4] Finish the day");
 
             int input = Input.GetInt();
             switch (input) {
-                case 1 -> BuyAnimal();
-                case 2 -> SellAnimal();
-                case 3 -> ShowAnimalStats();
-                case 4 -> Output.Set("Play with");
-                case 5 -> HireWorker();
-                case 6 -> FiredWorker();
-                case 7 -> GetSummary();
-                case 8 -> this.zoo.GetAnimalsList();
-                case 9 -> Output.Set("Clean");
-                case 11 -> EndDay();
-                case 0 -> this.timer.GetActualTime();
-                default -> Output.Set("Wrong number selected.");
+                case 1 : Output.Set("\nAnimal management menu:");
+                         Output.Set("[1] Buy an animal");
+                         Output.Set("[2] Sell an animal");
+                         Output.Set("[3] Show statistics of an animal");
+                         Output.Set("[4] Play with the animal");
+                         Output.Set("[5] List all animals");
 
+                int animals = Input.GetInt();
+                switch (animals) {
+                    case 1 : BuyAnimal(); break;
+                    case 2 : SellAnimal(); break;
+                    case 3 : ShowAnimalStats(); break;
+                    case 4 : Output.Set("Play with"); break;
+                    case 5 : this.zoo.GetAnimalsList(); break;
+                    default : Output.Set("Wrong number selected."); break;
+
+                }
+                break;
+
+                case 2 : Output.Set("\nWorker management menu:");
+                         Output.Set("[1] Hire a worker");
+                         Output.Set("[2] Fire a worker");
+                         Output.Set("[3] List all workers");
+
+                int workers = Input.GetInt();
+                switch (workers) {
+                    case 1 : HireWorker(); break;
+                    case 2 : FiredWorker(); break;
+                    case 3 : GetSummary(); break;
+                    default : Output.Set("Wrong number selected."); break;
+                }
+                break;
+
+                case 3 : Output.Set("\nZoo management menu:");
+                         Output.Set("[1] Clean the zoo");
+                         Output.Set("[2] Check the time");
+
+                int zoo = Input.GetInt();
+                switch (zoo) {
+                    case 1 : Output.Set("Zoo has been cleaned."); break;
+                    case 2 : this.timer.GetActualTime(); break;
+                    default : Output.Set("Wrong number selected."); break;
+                }
+                break;
+
+                case 4 : EndDay(); break;
+                default : Output.Set("Wrong number selected."); break;
             }
         }
     }
