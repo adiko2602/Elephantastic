@@ -70,7 +70,11 @@ public class ZooManagement implements Runnable {
 
     }
 
-    public void FiredWorker() {
+    public void FireWorker() {
+
+    }
+
+    public void GetWorkersList(){
 
     }
 
@@ -152,17 +156,11 @@ public class ZooManagement implements Runnable {
         return 3;
     }
 
-    private void GetSummary() {
-        Output.Set("Animals in zoo: " + this.zoo.GetZooNumberOfAnimal());
-        Output.Set("Visitors in zoo: " + this.zoo.GetZooNumberOfActualVisitor());
-        Output.Set("Cash in zoo: " + this.zooCashOffice.GetCash());
-    }
-
-    public void ZooStats() {
+    private void ZooStats() {
         Output.Set("Zoo name: " + zoo.GetZooName() + "\n" +
                 "Number of animals: " + zoo.GetZooNumberOfAnimal() + "\n" +
                 "Amount of visitors: " + zoo.GetZooNumberOfActualVisitor() + "\n" +
-                "Attractiveness level: " + GetAttractiveness() + "\n" +
+                "Attractiveness level: " + GetAttractiveness() + "\n" + //zoo.GetAttractiveness() do zrobienia
                 "Dirtiness level: " + zoo.GetZooDirtiness() + "\n" +
                 "Money in the piggy bank: " + this.zooCashOffice.GetCash() + "$");
     }
@@ -185,16 +183,18 @@ public class ZooManagement implements Runnable {
                     Output.Set("\nAnimal management menu:");
                     Output.Set("[1] Buy an animal");
                     Output.Set("[2] Sell an animal");
-                    Output.Set("[3] Show statistics of an animal");
-                    Output.Set("[4] Play with the animal");
-                    Output.Set("[5] List all animals");
+                    Output.Set("[3] Feed an animal");
+                    Output.Set("[4] Show statistics of an animal");
+                    Output.Set("[5] Play with the animal");
+                    Output.Set("[6] List all animals");
                     int animals = Input.GetInt();
                     switch (animals) {
                         case 1 -> BuyAnimal();
                         case 2 -> SellAnimal();
-                        case 3 -> ShowAnimalStats();
-                        case 4 -> Output.Set("Play with");
-                        case 5 -> this.zoo.GetAnimalsList();
+                        case 3 -> FeedAnimal();
+                        case 4 -> ShowAnimalStats();
+                        case 5 -> Output.Set("Play with");
+                        case 6 -> this.zoo.GetAnimalsList();
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
@@ -206,8 +206,8 @@ public class ZooManagement implements Runnable {
                     int workers = Input.GetInt();
                     switch (workers) {
                         case 1 -> HireWorker();
-                        case 2 -> FiredWorker();
-                        case 3 -> GetSummary();
+                        case 2 -> FireWorker();
+                        case 3 -> GetWorkersList();
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
