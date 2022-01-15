@@ -172,53 +172,52 @@ public class ZooManagement implements Runnable {
 
             int input = Input.GetInt();
             switch (input) {
-                case 1 : Output.Set("\nAnimal management menu:");
-                         Output.Set("[1] Buy an animal");
-                         Output.Set("[2] Sell an animal");
-                         Output.Set("[3] Show statistics of an animal");
-                         Output.Set("[4] Play with the animal");
-                         Output.Set("[5] List all animals");
-
-                int animals = Input.GetInt();
-                switch (animals) {
-                    case 1 : BuyAnimal(); break;
-                    case 2 : SellAnimal(); break;
-                    case 3 : ShowAnimalStats(); break;
-                    case 4 : Output.Set("Play with"); break;
-                    case 5 : this.zoo.GetAnimalsList(); break;
-                    default : Output.Set("Wrong number selected."); break;
-
+                case 1 -> {
+                    Output.Set("\nAnimal management menu:");
+                    Output.Set("[1] Buy an animal");
+                    Output.Set("[2] Sell an animal");
+                    Output.Set("[3] Show statistics of an animal");
+                    Output.Set("[4] Play with the animal");
+                    Output.Set("[5] List all animals");
+                    int animals = Input.GetInt();
+                    switch (animals) {
+                        case 1 -> BuyAnimal();
+                        case 2 -> SellAnimal();
+                        case 3 -> ShowAnimalStats();
+                        case 4 -> Output.Set("Play with");
+                        case 5 -> this.zoo.GetAnimalsList();
+                        default -> Output.Set("Wrong number selected.");
+                    }
                 }
-                break;
-
-                case 2 : Output.Set("\nWorker management menu:");
-                         Output.Set("[1] Hire a worker");
-                         Output.Set("[2] Fire a worker");
-                         Output.Set("[3] List all workers");
-
-                int workers = Input.GetInt();
-                switch (workers) {
-                    case 1 : HireWorker(); break;
-                    case 2 : FiredWorker(); break;
-                    case 3 : GetSummary(); break;
-                    default : Output.Set("Wrong number selected."); break;
+                case 2 -> {
+                    Output.Set("\nWorker management menu:");
+                    Output.Set("[1] Hire a worker");
+                    Output.Set("[2] Fire a worker");
+                    Output.Set("[3] List all workers");
+                    int workers = Input.GetInt();
+                    switch (workers) {
+                        case 1 -> HireWorker();
+                        case 2 -> FiredWorker();
+                        case 3 -> GetSummary();
+                        default -> Output.Set("Wrong number selected.");
+                    }
                 }
-                break;
-
-                case 3 : Output.Set("\nZoo management menu:");
-                         Output.Set("[1] Clean the zoo");
-                         Output.Set("[2] Check the time");
-
-                int zoo = Input.GetInt();
-                switch (zoo) {
-                    case 1 : Output.Set("Zoo has been cleaned."); break;
-                    case 2 : this.timer.GetActualTime(); break;
-                    default : Output.Set("Wrong number selected."); break;
+                case 3 -> {
+                    Output.Set("\nZoo management menu:");
+                    Output.Set("[1] Clean the zoo");
+                    Output.Set("[2] Check the time");
+                    int zoo = Input.GetInt();
+                    switch (zoo) {
+                        case 1 -> Output.Set("Zoo has been cleaned.");
+                        case 2 -> this.timer.GetActualTime();
+                        default -> Output.Set("Wrong number selected.");
+                    }
                 }
-                break;
-
-                case 4 : EndDay(); Output.Set("Day finished."); break;
-                default : Output.Set("Wrong number selected."); break;
+                case 4 -> {
+                    EndDay();
+                    Output.Set("Day finished.");
+                }
+                default -> Output.Set("Wrong number selected.");
             }
         }
     }
