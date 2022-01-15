@@ -12,7 +12,7 @@ public class Zoo {
 
     public void GetAnimalsList() {                                          // Method for print all animals in zoo
         if(!this.animals.isEmpty()) {                                       // Check if list is empty
-            int i = 1;                                                      // Int for interate
+            int i = 1;                                                      // Int for iterate
             for (Animals animal : this.animals) {                           // for loop for all animals in zoo
                 Output.Set("[" + (i++) + "] " + animal.GetAnimalName());    // Output
             }
@@ -82,5 +82,12 @@ public class Zoo {
 
     public int GetZooNumberOfAnimal() {         // Method for visitor actual animals number in zoo
         return this.animals.size();
+    }
+    public int GetZooDirtiness() {
+        return this.zooDirtiness;
+    }
+
+    public String GetZooName() {
+        return "Elephantastic";
     }
 }

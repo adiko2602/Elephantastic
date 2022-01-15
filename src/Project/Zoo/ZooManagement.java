@@ -134,7 +134,7 @@ public class ZooManagement implements Runnable {
     }
 
     public void ShowAnimalStats() {
-        Output.Set("Select which animal statistics you would like to see: ");
+        Output.Set("Select which animal statistics you would like to view: ");
         this.zoo.GetAnimalsList();
         int numberSelected = Input.GetInt() - 1;
         Animals animal = this.zoo.GetAnimal(numberSelected);
@@ -156,6 +156,15 @@ public class ZooManagement implements Runnable {
         Output.Set("Animals in zoo: " + this.zoo.GetZooNumberOfAnimal());
         Output.Set("Visitors in zoo: " + this.zoo.GetZooNumberOfActualVisitor());
         Output.Set("Cash in zoo: " + this.zooCashOffice.GetCash());
+    }
+
+    public void ZooStats() {
+        Output.Set("Zoo name: " + zoo.GetZooName() + "\n" +
+                "Number of animals: " + zoo.GetZooNumberOfAnimal() + "\n" +
+                "Amount of visitors: " + zoo.GetZooNumberOfActualVisitor() + "\n" +
+                "Attractiveness level: " + GetAttractiveness() + "\n" +
+                "Dirtiness level: " + zoo.GetZooDirtiness() + "\n" +
+                "Money in the piggy bank: " + this.zooCashOffice.GetCash() + "$");
     }
 
     public void Menu() {
@@ -206,12 +215,12 @@ public class ZooManagement implements Runnable {
                     Output.Set("\nZoo management menu:");
                     Output.Set("[1] Clean the zoo");
                     Output.Set("[2] Check the time");
-                    Output.Set("[3] Display the amount of money in the piggy bank");
+                    Output.Set("[3] View zoo statistics");
                     int zoo = Input.GetInt();
                     switch (zoo) {
                         case 1 -> Output.Set("Zoo has been cleaned.");
                         case 2 -> this.timer.GetActualTime();
-                        case 3 -> Output.Set("Cash in bank: " + this.zooCashOffice.GetCash() + "$");
+                        case 3 -> {Output.Set("Zoo statistics."); ZooStats();}
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
