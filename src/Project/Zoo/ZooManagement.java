@@ -217,7 +217,7 @@ public class ZooManagement implements Runnable {
                 }
                 break;
 
-                case 4 : EndDay(); break;
+                case 4 : EndDay(); Output.Set("Day finished."); break;
                 default : Output.Set("Wrong number selected."); break;
             }
         }
