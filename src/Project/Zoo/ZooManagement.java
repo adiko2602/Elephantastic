@@ -206,10 +206,12 @@ public class ZooManagement implements Runnable {
                     Output.Set("\nZoo management menu:");
                     Output.Set("[1] Clean the zoo");
                     Output.Set("[2] Check the time");
+                    Output.Set("[3] Display the amount of money in the piggy bank");
                     int zoo = Input.GetInt();
                     switch (zoo) {
                         case 1 -> Output.Set("Zoo has been cleaned.");
                         case 2 -> this.timer.GetActualTime();
+                        case 3 -> Output.Set("Cash in bank: " + this.zooCashOffice.GetCash() + "$");
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
