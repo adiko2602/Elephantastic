@@ -21,7 +21,7 @@ public class QueueGenerator implements Runnable {
 
     private int actualAttractiveness;
 
-    private int[] hoursMultiplier = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 6, 6, 6, 5, 4, 4, 3, 1, 1, 1, 1 };
+    private int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 1, 0, 0};
 
     private ArrayList<Visitor> visitorsQueue = new ArrayList<>();
 
