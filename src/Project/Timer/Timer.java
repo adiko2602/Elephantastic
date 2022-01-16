@@ -7,6 +7,7 @@ public class Timer implements Runnable {
     private long seconds = 0;
     private int day = 1;
     private boolean endDay = false;
+    private boolean endHour = false;
 
     @Override
     public void run() {
@@ -35,7 +36,7 @@ public class Timer implements Runnable {
         }
     }
 
-    public long CheckTime() {
+    public long CheckRunSeconds() {
         return this.runSeconds;
     }
 
