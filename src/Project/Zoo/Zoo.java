@@ -26,7 +26,7 @@ public class Zoo {
             if(number >= 0 && number < this.animals.size()) {       // Check if selected number is correct
                 return animals.get(number);                         // Get animal at index
             } else {
-                Output.Set("Selected number of animal is wrong!");  // If wrong number
+                Output.Set("Animal with selected number does not exist!");  // If wrong number
             }
         } else {
             Output.Set("Zoo is empty!");                            // If empty
@@ -45,7 +45,7 @@ public class Zoo {
                 Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");     // Output
                 this.animals.remove(animalNumber);                              // Remove animal from zoo at index
             } else {
-                Output.Set("Selected number of animal is wrong!");               // Output
+                Output.Set("Animal with selected number does not exist!");               // Output
             }
         } else {
             Output.Set("Zoo is empty!");                                         // Output
