@@ -109,7 +109,7 @@ public class ZooManagement implements Runnable {
                 if(workersNotAvaiable.get(i).GetWorkEndTime() < timer.CheckRunSeconds()) {
                     workers.get(i).SetWorkEndTime(0);
                     workers.add(workersNotAvaiable.get(i));
-                    workersNotAvaiable.remove(i)
+                    workersNotAvaiable.remove(i);
                 }
             }
         }
