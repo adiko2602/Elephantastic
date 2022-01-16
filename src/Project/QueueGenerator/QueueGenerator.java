@@ -11,9 +11,6 @@ import java.util.Random;
 public class QueueGenerator implements Runnable {
     private final Timer timer;
     private final ZooManagement zooManagement;
-    private int visitorNumber;
-    private final int minVisitorNumber = 10;
-    private boolean isVisitor = false;
 
     private int actualDay;
     private int actualHour;
@@ -22,15 +19,12 @@ public class QueueGenerator implements Runnable {
 
     private final int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 1, 0, 0};
 
-    private final ArrayList<Visitor> visitorsQueue = new ArrayList<>();
-
     public QueueGenerator(Timer timer, ZooManagement zooManagment) {
         this.timer = timer;
         this.zooManagement = zooManagment;
         this.actualDay = this.timer.GetActualDay();
         this.actualHour = this.timer.GetActualHour();
         this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-        this.visitorNumber = this.minVisitorNumber;
         //Generate();
     }
 
