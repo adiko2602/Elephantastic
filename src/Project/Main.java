@@ -5,38 +5,36 @@ import Project.Timer.Timer;
 import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
 
+import java.util.ArrayList;
 
-public class Main { //hah
+
+public class Main {
 
     public static void main(String[] args) {
         Timer timer = new Timer();
+
         ZooManagement zooManagement = new ZooManagement(timer);
         QueueGenerator queueGenerator = new QueueGenerator(timer, zooManagement);
 
         Thread timerThread = new Thread(timer);
         Thread zooManagementThread = new Thread(zooManagement);
-        Thread queueGeneratorThread = new Thread(queueGenerator);
 
         timerThread.start();
         zooManagementThread.start();
-        queueGeneratorThread.start();
 
         //noinspection InfiniteLoopStatement
         while (true) {
+            zooManagement.CheckWorkers();
             if(timer.GetEndDay()) {
                 timer.SetEndDay();
                 zooManagement.EndDay();
-            } else {
-                try {
-                    Thread.sleep(1);
-                } catch (Exception exception) {
-                    Output.Set(exception.getMessage());
+            }
+/*            if(timer.CheckRunSeconds() % 60 == 0) {
+                ArrayList<Visitor> visitors = queueGenerator.Generate();
+                for (Visitor vistor: visitors) {
+                    zooManagement.LetIn(vistor);
                 }
-            }
-
-            if(queueGenerator.CheckIfIsVisitor()) {
-                zooManagement.LetIn(queueGenerator.GetVisitor());
-            }
+            }*/
         }
     }
 }
