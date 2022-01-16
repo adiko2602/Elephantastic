@@ -6,12 +6,15 @@ import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class QueueGenerator implements Runnable {
-    private final Timer timer;
-    private final ZooManagement zooManagement;
+    private Timer timer;
+    private ZooManagement zooManagement;
     private int visitorNumber;
-    private final int minVisitorNumber = 10;
+    private int minVisitorNumber = 10;
+    private int visitorNumberStep = 10;
     private boolean isVisitor = false;
 
     private int actualDay;
@@ -19,9 +22,8 @@ public class QueueGenerator implements Runnable {
 
     private int actualAttractiveness;
 
-    private final int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 1, 0, 0};
+    private int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 5, 6, 7, 6, 5, 4, 3, 3, 2, 1, 1, 0, 0};
 
-    private final ArrayList<Visitor> visitorsQueue = new ArrayList<>();
 
     public QueueGenerator(Timer timer, ZooManagement zooManagment) {
         this.timer = timer;
@@ -30,10 +32,10 @@ public class QueueGenerator implements Runnable {
         this.actualHour = this.timer.GetActualHour();
         this.actualAttractiveness = this.zooManagement.GetAttractiveness();
         this.visitorNumber = this.minVisitorNumber;
-        Generate();
+        //Generate();
     }
 
-    @Override
+   /* @Override
     public void run() {
         while(true) {
             CheckDay();
@@ -51,18 +53,50 @@ public class QueueGenerator implements Runnable {
         }
     }
 
+    */
+
+    public void run(){
+        CheckDay();
+        CheckHour();
+    }
+
     private void CheckDay() {
         if(this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
-            int visitorNumberStep = 10;
+            this.actualAttractiveness = this.zooManagement.GetAttractiveness();
+        }
+    }
+
+    private void CheckHour() {
+        if(this.actualHour != this.timer.GetActualHour()) {
+                this.actualHour = this.timer.GetActualHour();
+                GenerateVisitors();
+            }
+    }
+
+    private void GenerateVisitors() {
+        Random rand = new Random();
+        int numberOfVisitors = rand.nextInt(10)+10;
+        numberOfVisitors *= this.hoursMultiplier[this.actualHour];
+        numberOfVisitors += (int)(numberOfVisitors*(this.actualAttractiveness/2.0));
+        for(int i = 0; i<numberOfVisitors; i++) {
+            zooManagement.LetIn(new Visitor());
+        }
+    }
+
+
+    /*
+    private void CheckDay() {
+        if(this.actualDay != this.timer.GetActualDay()) {
+            this.actualDay = this.timer.GetActualDay();
             if(this.actualAttractiveness < this.zooManagement.GetAttractiveness()) {
                 this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-                this.visitorNumber += visitorNumberStep;
+                this.visitorNumber += this.visitorNumberStep;
             }
             if(this.actualAttractiveness > this.zooManagement.GetAttractiveness()) {
                 this.actualAttractiveness = this.zooManagement.GetAttractiveness();
                 if(this.visitorNumber >= this.minVisitorNumber) {
-                    this.visitorNumber -= visitorNumberStep;
+                    this.visitorNumber -= this.visitorNumberStep;
                 }
             }
         }
@@ -74,12 +108,13 @@ public class QueueGenerator implements Runnable {
                 try {
                     Thread.sleep(200);
                 } catch (Exception ignored) { }
+                this.isVisitor = true;
             } else {
                 try {
                     Thread.sleep(1000);
                 } catch (Exception ignored) { }
+                this.isVisitor = true;
             }
-            this.isVisitor = true;
         }
     }
 
@@ -102,5 +137,5 @@ public class QueueGenerator implements Runnable {
     public boolean CheckIfIsVisitor() {
         return this.isVisitor;
     }
-
+    */
 }

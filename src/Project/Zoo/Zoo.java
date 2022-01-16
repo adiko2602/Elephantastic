@@ -5,10 +5,10 @@ import Project.Output;
 import java.util.ArrayList;
 
 public class Zoo {
-    private final ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
+    private ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
     private int zooNumberOfActualVisitor = 0;                       // Number of visitors in zoo
-    private int zooDirtiness = 2;                                   // Number of zoo dirtiness
-    private int zooAttractiveness = 5;                              // Number of zoo attractiveness
+    private int zooDirtiness = 0;                                   // Number of zoo dirtiness
+    private int zooAttractiveness = 0;                              // Number of zoo attractiveness
 
     public void GetAnimalsList() {                                          // Method for print all animals in zoo
         if(!this.animals.isEmpty()) {                                       // Check if list is empty
@@ -26,7 +26,7 @@ public class Zoo {
             if(number >= 0 && number < this.animals.size()) {       // Check if selected number is correct
                 return animals.get(number);                         // Get animal at index
             } else {
-                Output.Set("Animal with selected number does not exist!");  // If wrong number
+                Output.Set("Selected number of animal is wrong!");  // If wrong number
             }
         } else {
             Output.Set("Zoo is empty!");                            // If empty
@@ -45,7 +45,7 @@ public class Zoo {
                 Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");     // Output
                 this.animals.remove(animalNumber);                              // Remove animal from zoo at index
             } else {
-                Output.Set("Animal with selected number does not exist!");               // Output
+                Output.Set("Selected number of animal is wrong!");               // Output
             }
         } else {
             Output.Set("Zoo is empty!");                                         // Output
@@ -53,27 +53,19 @@ public class Zoo {
     }
 
     public void IncreaseZooDirtiness() {        // Method for zoo dirtiness increase
-        if(this.zooDirtiness < 10) {
-            this.zooDirtiness++;
-        }
+        this.zooDirtiness++;
     }
 
     public void DecreaseZooDirtiness() {        // Method for zoo dirtiness decrease
-        if(this.zooDirtiness > 1) {
-            this.zooDirtiness=0;
-        }
+        this.zooDirtiness--;
     }
 
     public void IncreaseZooAttractiveness() {   // Method for zoo attractiveness increase
-        if(this.zooAttractiveness < 10) {
-            this.zooAttractiveness++;
-        }
+        this.zooAttractiveness++;
     }
 
     public void DecreaseZooAttractiveness() {   // Method for zoo attractiveness increase
-        if(this.zooAttractiveness > 1) {
-            this.zooAttractiveness--;
-        }
+        this.zooAttractiveness--;
     }
 
     public void VisitorLetIn() {                // Method for visitor number increase
@@ -93,10 +85,6 @@ public class Zoo {
     }
     public int GetZooDirtiness() {
         return this.zooDirtiness;
-    }
-
-    public int GetZooAttractiveness() {
-        return this.zooAttractiveness;
     }
 
     public String GetZooName() {

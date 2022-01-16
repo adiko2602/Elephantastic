@@ -3,10 +3,11 @@ package Project.Visitors;
 import java.util.Random;
 
 public class Visitor {
-    private final int age;
+    private int age;
+    private Random rand;
 
     public Visitor() {
-        Random rand = new Random();
+        rand = new Random();
         this.age = rand.nextInt(100)+1;
     }
 
