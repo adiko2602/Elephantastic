@@ -89,16 +89,16 @@ public class ZooManagement implements Runnable {
     public void FireWorker() {
         if(!workers.isEmpty()) {
             GetWorkersList();
-            Output.Set("\nSelect an worker you would like to fire: ");
+            Output.Set("\nSelect a worker you would like to fire: ");
             int numberSelected = Input.GetInt() - 1;
             if(numberSelected >= 0 && numberSelected < this.workers.size()) {
                 workers.remove(numberSelected);
-                Output.Set("\nSelected worker was successfully fired.");
+                Output.Set("\nSelected worker fired successfully.");
             } else {
-                Output.Set("Selected number of worker is wrong!");
+                Output.Set("Worker with selected number does not exist!");
             }
         } else {
-            Output.Set("There isn't any workers.");
+            Output.Set("There are no hired workers.");
         }
     }
 
@@ -234,6 +234,7 @@ public class ZooManagement implements Runnable {
                     Output.Set("[4] Show statistics of an animal");
                     Output.Set("[5] Play with the animal");
                     Output.Set("[6] List all animals");
+                    Output.Set("[0] Return back to main menu");
                     int animals = Input.GetInt();
                     switch (animals) {
                         case 1 -> BuyAnimal();
@@ -242,6 +243,7 @@ public class ZooManagement implements Runnable {
                         case 4 -> ShowAnimalStats();
                         case 5 -> Output.Set("Play with");
                         case 6 -> this.zoo.GetAnimalsList();
+                        case 0 -> Menu();
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
@@ -250,11 +252,13 @@ public class ZooManagement implements Runnable {
                     Output.Set("[1] Hire a worker");
                     Output.Set("[2] Fire a worker");
                     Output.Set("[3] List all workers");
+                    Output.Set("[0] Return back to main menu");
                     int workers = Input.GetInt();
                     switch (workers) {
                         case 1 -> HireWorker();
                         case 2 -> FireWorker();
                         case 3 -> GetWorkersList();
+                        case 0 -> Menu();
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
@@ -263,11 +267,13 @@ public class ZooManagement implements Runnable {
                     Output.Set("[1] Clean the zoo");
                     Output.Set("[2] Check the time");
                     Output.Set("[3] View zoo statistics");
+                    Output.Set("[0] Return back to main menu");
                     int zoo = Input.GetInt();
                     switch (zoo) {
                         case 1 -> {CleanZoo(); Output.Set("Zoo has been cleaned.");}
                         case 2 -> this.timer.GetActualTime();
                         case 3 -> {Output.Set("Zoo statistics."); ZooStats();}
+                        case 0 -> Menu();
                         default -> Output.Set("Wrong number selected.");
                     }
                 }
