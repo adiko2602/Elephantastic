@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Zoo {
     private ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
     private int zooNumberOfActualVisitor = 0;                       // Number of visitors in zoo
-    private int zooDirtiness = 0;                                   // Number of zoo dirtiness
-    private int zooAttractiveness = 0;                              // Number of zoo attractiveness
+    private int zooDirtiness = 2;                                   // Number of zoo dirtiness
+    private int zooAttractiveness = 5;                              // Number of zoo attractiveness
 
     public void GetAnimalsList() {                                          // Method for print all animals in zoo
         if(!this.animals.isEmpty()) {                                       // Check if list is empty
