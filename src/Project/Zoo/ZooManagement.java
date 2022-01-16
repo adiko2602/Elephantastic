@@ -27,14 +27,13 @@ public class ZooManagement implements Runnable {
     private ArrayList<Workers> workersNotAvaiable = new ArrayList<>();
 
     public void run() {
-
+        Menu();
     }
 
     public ZooManagement(Timer timer) {
         this.zoo = new Zoo();
         this.zooCashOffice = new ZooCashOffice();
         this.timer = timer;
-        Menu();
     }
 
     public void BuyAnimal() {

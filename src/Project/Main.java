@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
         Timer timer = new Timer();
-
         ZooManagement zooManagement = new ZooManagement(timer);
         QueueGenerator queueGenerator = new QueueGenerator(timer, zooManagement);
 
@@ -28,6 +27,10 @@ public class Main {
             if(timer.GetEndDay()) {
                 timer.SetEndDay();
                 zooManagement.EndDay();
+                timer.GetActualTime();
+                try {
+                    Thread.sleep(10);
+                } catch (Exception ignored) {}
             }
 /*            if(timer.CheckRunSeconds() % 60 == 0) {
                 ArrayList<Visitor> visitors = queueGenerator.Generate();
