@@ -95,6 +95,10 @@ public class Zoo {
         return this.zooDirtiness;
     }
 
+    public int GetZooAttractiveness() {
+        return this.zooAttractiveness;
+    }
+
     public String GetZooName() {
         return "Elephantastic";
     }
