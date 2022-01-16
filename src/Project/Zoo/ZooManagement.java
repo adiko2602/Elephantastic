@@ -5,8 +5,12 @@ import Project.Input;
 import Project.Output;
 import Project.Timer.Timer;
 import Project.Visitors.Visitor;
+import Project.Workers.Workers;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ZooManagement implements Runnable {
 
@@ -18,6 +22,9 @@ public class ZooManagement implements Runnable {
             { Chimpanzee.class, AfricanElephant.class, BoaSnake.class, AfricanLion.class, EuropeanBison.class,
                     Flamingo.class, Horse.class, Penguin.class, RedPanda.class, TigerShark.class}
     );
+
+    private ArrayList<Workers> workers = new ArrayList<>();
+    private ArrayList<Workers> workersNotAvaiable = new ArrayList<>();
 
     public void run() {
 
@@ -67,15 +74,56 @@ public class ZooManagement implements Runnable {
     }
 
     public void HireWorker() {
+        Workers worker = new Workers();
 
+        if (worker.GetValue() <= this.zooCashOffice.GetCash()) {
+            this.zooCashOffice.LowerCash(worker.GetValue());
+            this.workers.add(worker);
+            Output.Set("Worker " + worker.GetName() + " add successfully to zoo.");
+        } else {
+            Output.Set("You don't have enough cash.");
+            Output.Set("Cash in bank: " + this.zooCashOffice.GetCash());
+            Output.Set("Worker cost: " + worker.GetValue());
+        }
     }
 
     public void FireWorker() {
+        if(!workers.isEmpty()) {
+            GetWorkersList();
+            Output.Set("\nSelect an worker you would like to fire: ");
+            int numberSelected = Input.GetInt() - 1;
+            if(numberSelected >= 0 && numberSelected < this.workers.size()) {
+                workers.remove(numberSelected);
+                Output.Set("\nSelected worker was successfully fired.");
+            } else {
+                Output.Set("Selected number of worker is wrong!");
+            }
+        } else {
+            Output.Set("There isn't any workers.");
+        }
+    }
 
+    public void CheckWorkers() {
+        if(!workersNotAvaiable.isEmpty()) {
+            for (int i = workersNotAvaiable.size()-1; i>=0; i--) {
+                if(workersNotAvaiable.get(i).GetWorkEndTime() < timer.CheckRunSeconds()) {
+                    workers.get(i).SetWorkEndTime(0);
+                    workers.add(workersNotAvaiable.get(i));
+                    workersNotAvaiable.remove(i)
+                }
+            }
+        }
     }
 
     public void GetWorkersList(){
-
+        if(!this.workers.isEmpty()) {                                       // Check if list is empty
+            int i = 1;                                                      // Int for iterate
+            for (Workers worker : this.workers) {                           // for loop for all worker in zoo
+                Output.Set("[" + (i++) + "] " + worker.GetName());          // Output
+            }
+        } else {
+            Output.Set("There isn't any workers.");                         // If list of workers is empty
+        }
     }
 
     public void CleanZoo() {
