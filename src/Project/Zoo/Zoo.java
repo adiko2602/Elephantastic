@@ -53,19 +53,27 @@ public class Zoo {
     }
 
     public void IncreaseZooDirtiness() {        // Method for zoo dirtiness increase
-        this.zooDirtiness++;
+        if(this.zooDirtiness < 10) {
+            this.zooDirtiness++;
+        }
     }
 
     public void DecreaseZooDirtiness() {        // Method for zoo dirtiness decrease
-        this.zooDirtiness--;
+        if(this.zooDirtiness > 1) {
+            this.zooDirtiness--;
+        }
     }
 
     public void IncreaseZooAttractiveness() {   // Method for zoo attractiveness increase
-        this.zooAttractiveness++;
+        if(this.zooAttractiveness < 10) {
+            this.zooAttractiveness++;
+        }
     }
 
     public void DecreaseZooAttractiveness() {   // Method for zoo attractiveness increase
-        this.zooAttractiveness--;
+        if(this.zooAttractiveness > 1) {
+            this.zooAttractiveness--;
+        }
     }
 
     public void VisitorLetIn() {                // Method for visitor number increase
