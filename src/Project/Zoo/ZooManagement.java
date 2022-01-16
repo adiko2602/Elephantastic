@@ -89,16 +89,16 @@ public class ZooManagement implements Runnable {
     public void FireWorker() {
         if(!workers.isEmpty()) {
             GetWorkersList();
-            Output.Set("\nSelect an worker you would like to fire: ");
+            Output.Set("\nSelect a worker you would like to fire: ");
             int numberSelected = Input.GetInt() - 1;
             if(numberSelected >= 0 && numberSelected < this.workers.size()) {
                 workers.remove(numberSelected);
-                Output.Set("\nSelected worker was successfully fired.");
+                Output.Set("\nSelected worker fired successfully.");
             } else {
-                Output.Set("Selected number of worker is wrong!");
+                Output.Set("Worker with selected number does not exist!");
             }
         } else {
-            Output.Set("There isn't any workers.");
+            Output.Set("There are no hired workers.");
         }
     }
 
