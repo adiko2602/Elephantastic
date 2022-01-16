@@ -21,6 +21,7 @@ public class Main {
         timerThread.start();
         zooManagementThread.start();
 
+
         //noinspection InfiniteLoopStatement
         while (true) {
             zooManagement.CheckWorkers();

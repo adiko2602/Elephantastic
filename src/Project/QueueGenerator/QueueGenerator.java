@@ -24,7 +24,6 @@ public class QueueGenerator implements Runnable {
 
     private int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 5, 6, 7, 6, 5, 4, 3, 3, 2, 1, 1, 0, 0};
 
-    private ArrayList<Visitor> visitorsQueue = new ArrayList<>();
 
     public QueueGenerator(Timer timer, ZooManagement zooManagment) {
         this.timer = timer;
