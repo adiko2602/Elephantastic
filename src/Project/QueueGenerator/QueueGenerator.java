@@ -7,6 +7,7 @@ import Project.Zoo.ZooManagement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class QueueGenerator implements Runnable {
     private Timer timer;
@@ -21,7 +22,7 @@ public class QueueGenerator implements Runnable {
 
     private int actualAttractiveness;
 
-    private int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 1, 0, 0};
+    private int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 5, 6, 7, 6, 5, 4, 3, 3, 2, 1, 1, 0, 0};
 
     private ArrayList<Visitor> visitorsQueue = new ArrayList<>();
 
@@ -32,10 +33,10 @@ public class QueueGenerator implements Runnable {
         this.actualHour = this.timer.GetActualHour();
         this.actualAttractiveness = this.zooManagement.GetAttractiveness();
         this.visitorNumber = this.minVisitorNumber;
-        Generate();
+        //Generate();
     }
 
-    @Override
+   /* @Override
     public void run() {
         while(true) {
             CheckDay();
@@ -53,6 +54,39 @@ public class QueueGenerator implements Runnable {
         }
     }
 
+    */
+
+    public void run(){
+        CheckDay();
+        CheckHour();
+    }
+
+    private void CheckDay() {
+        if(this.actualDay != this.timer.GetActualDay()) {
+            this.actualDay = this.timer.GetActualDay();
+            this.actualAttractiveness = this.zooManagement.GetAttractiveness();
+        }
+    }
+
+    private void CheckHour() {
+        if(this.actualHour != this.timer.GetActualHour()) {
+                this.actualHour = this.timer.GetActualHour();
+                GenerateVisitors();
+            }
+    }
+
+    private void GenerateVisitors() {
+        Random rand = new Random();
+        int numberOfVisitors = rand.nextInt(10)+10;
+        numberOfVisitors *= this.hoursMultiplier[this.actualHour];
+        numberOfVisitors += (int)(numberOfVisitors*(this.actualAttractiveness/2.0));
+        for(int i = 0; i<numberOfVisitors; i++) {
+            zooManagement.LetIn(new Visitor());
+        }
+    }
+
+
+    /*
     private void CheckDay() {
         if(this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
@@ -104,5 +138,5 @@ public class QueueGenerator implements Runnable {
     public boolean CheckIfIsVisitor() {
         return this.isVisitor;
     }
-
+    */
 }
