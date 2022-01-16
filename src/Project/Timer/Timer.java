@@ -3,8 +3,8 @@ package Project.Timer;
 import Project.Output;
 
 public class Timer implements Runnable {
-    private long runSeconds = 1435;
-    private long seconds = 1435;
+    private long runSeconds = 0;
+    private long seconds = 0;
     private int day = 1;
     private boolean endDay = false;
 
