@@ -13,9 +13,11 @@ public class Main {
 
         Thread timerThread = new Thread(timer);
         Thread zooManagementThread = new Thread(zooManagement);
+        Thread queueGeneratorThread = new Thread(queueGenerator);
 
         timerThread.start();
         zooManagementThread.start();
+        queueGeneratorThread.start();
 
         //noinspection InfiniteLoopStatement
         while (true) {
@@ -28,12 +30,6 @@ public class Main {
                 zooManagement.EndDay();
                 timer.GetActualTime();
             }
-/*            if(timer.CheckRunSeconds() % 60 == 0) {
-                ArrayList<Visitor> visitors = queueGenerator.Generate();
-                for (Visitor vistor: visitors) {
-                    zooManagement.LetIn(vistor);
-                }
-            }*/
         }
     }
 }

@@ -6,6 +6,7 @@ import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class QueueGenerator implements Runnable {
     private final Timer timer;
@@ -30,10 +31,40 @@ public class QueueGenerator implements Runnable {
         this.actualHour = this.timer.GetActualHour();
         this.actualAttractiveness = this.zooManagement.GetAttractiveness();
         this.visitorNumber = this.minVisitorNumber;
-        Generate();
+        //Generate();
     }
 
     @Override
+    public void run(){
+        CheckDay();
+        CheckHour();
+    }
+
+    private void CheckDay() {
+        if(this.actualDay != this.timer.GetActualDay()) {
+            this.actualDay = this.timer.GetActualDay();
+            this.actualAttractiveness = this.zooManagement.GetAttractiveness();
+        }
+    }
+
+    private void CheckHour() {
+        if(this.actualHour != this.timer.GetActualHour()) {
+            this.actualHour = this.timer.GetActualHour();
+            GenerateVisitors();
+        }
+    }
+
+    private void GenerateVisitors() {
+        Random rand = new Random();
+        int numberOfVisitors = rand.nextInt(10)+10;
+        numberOfVisitors *= this.hoursMultiplier[this.actualHour];
+        numberOfVisitors += (int)(numberOfVisitors*(this.actualAttractiveness/2.0));
+        for(int i = 0; i<numberOfVisitors; i++) {
+            zooManagement.LetIn(new Visitor());
+        }
+    }
+
+    /*@Override
     public void run() {
         while(true) {
             CheckDay();
@@ -102,5 +133,7 @@ public class QueueGenerator implements Runnable {
     public boolean CheckIfIsVisitor() {
         return this.isVisitor;
     }
+
+     */
 
 }
