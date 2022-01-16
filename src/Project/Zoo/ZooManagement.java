@@ -126,7 +126,7 @@ public class ZooManagement implements Runnable {
     }
 
     public void CleanZoo() {
-
+        this.zoo.DecreaseZooDirtiness();
     }
 
     public void FeedAnimal() {
@@ -265,7 +265,7 @@ public class ZooManagement implements Runnable {
                     Output.Set("[3] View zoo statistics");
                     int zoo = Input.GetInt();
                     switch (zoo) {
-                        case 1 -> Output.Set("Zoo has been cleaned.");
+                        case 1 -> {CleanZoo(); Output.Set("Zoo has been cleaned.");}
                         case 2 -> this.timer.GetActualTime();
                         case 3 -> {Output.Set("Zoo statistics."); ZooStats();}
                         default -> Output.Set("Wrong number selected.");
