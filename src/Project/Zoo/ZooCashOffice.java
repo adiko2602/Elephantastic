@@ -6,10 +6,10 @@ import Project.Visitors.Visitor;
 import java.util.HashMap;
 
 public class ZooCashOffice {
-    private HashMap<Integer, Integer> paymentOfAge;
-    private Integer firstPaymentValue = 0;
-    private Integer secondPaymentValue = 5;
-    private Integer thirdPaymentValue = 10;
+    private final HashMap<Integer, Integer> paymentOfAge;
+    private final Integer firstPaymentValue = 0;
+    private final Integer secondPaymentValue = 5;
+    private final Integer thirdPaymentValue = 10;
 
     private Integer zooCash = 100000;
 

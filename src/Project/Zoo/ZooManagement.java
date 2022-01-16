@@ -10,21 +10,20 @@ import Project.Workers.Workers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class ZooManagement implements Runnable {
 
-    private Zoo zoo;
-    private ZooCashOffice zooCashOffice;
-    private Timer timer;
+    private final Zoo zoo;
+    private final ZooCashOffice zooCashOffice;
+    private final Timer timer;
 
-    private List<Class<?>> animalsToBuy = Arrays.asList(new Class<?>[]
+    private final List<Class<?>> animalsToBuy = Arrays.asList(new Class<?>[]
             { Chimpanzee.class, AfricanElephant.class, BoaSnake.class, AfricanLion.class, EuropeanBison.class,
                     Flamingo.class, Horse.class, Penguin.class, RedPanda.class, TigerShark.class}
     );
 
-    private ArrayList<Workers> workers = new ArrayList<>();
-    private ArrayList<Workers> workersNotAvaiable = new ArrayList<>();
+    private final ArrayList<Workers> workers = new ArrayList<>();
+    private final ArrayList<Workers> workersNotAvailable = new ArrayList<>();
 
     public void run() {
         Menu();
@@ -103,12 +102,12 @@ public class ZooManagement implements Runnable {
     }
 
     public void CheckWorkers() {
-        if(!workersNotAvaiable.isEmpty()) {
-            for (int i = workersNotAvaiable.size()-1; i>=0; i--) {
-                if(workersNotAvaiable.get(i).GetWorkEndTime() < timer.CheckRunSeconds()) {
+        if(!workersNotAvailable.isEmpty()) {
+            for (int i = workersNotAvailable.size()-1; i>=0; i--) {
+                if(workersNotAvailable.get(i).GetWorkEndTime() < timer.CheckRunSeconds()) {
                     workers.get(i).SetWorkEndTime(0);
-                    workers.add(workersNotAvaiable.get(i));
-                    workersNotAvaiable.remove(i);
+                    workers.add(workersNotAvailable.get(i));
+                    workersNotAvailable.remove(i);
                 }
             }
         }

@@ -6,14 +6,12 @@ import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class QueueGenerator implements Runnable {
-    private Timer timer;
-    private ZooManagement zooManagement;
+    private final Timer timer;
+    private final ZooManagement zooManagement;
     private int visitorNumber;
-    private int minVisitorNumber = 10;
-    private int visitorNumberStep = 10;
+    private final int minVisitorNumber = 10;
     private boolean isVisitor = false;
 
     private int actualDay;
@@ -21,9 +19,9 @@ public class QueueGenerator implements Runnable {
 
     private int actualAttractiveness;
 
-    private int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 1, 0, 0};
+    private final int[] hoursMultiplier = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 1, 0, 0};
 
-    private ArrayList<Visitor> visitorsQueue = new ArrayList<>();
+    private final ArrayList<Visitor> visitorsQueue = new ArrayList<>();
 
     public QueueGenerator(Timer timer, ZooManagement zooManagment) {
         this.timer = timer;
@@ -56,14 +54,15 @@ public class QueueGenerator implements Runnable {
     private void CheckDay() {
         if(this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
+            int visitorNumberStep = 10;
             if(this.actualAttractiveness < this.zooManagement.GetAttractiveness()) {
                 this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-                this.visitorNumber += this.visitorNumberStep;
+                this.visitorNumber += visitorNumberStep;
             }
             if(this.actualAttractiveness > this.zooManagement.GetAttractiveness()) {
                 this.actualAttractiveness = this.zooManagement.GetAttractiveness();
                 if(this.visitorNumber >= this.minVisitorNumber) {
-                    this.visitorNumber -= this.visitorNumberStep;
+                    this.visitorNumber -= visitorNumberStep;
                 }
             }
         }
@@ -75,13 +74,12 @@ public class QueueGenerator implements Runnable {
                 try {
                     Thread.sleep(200);
                 } catch (Exception ignored) { }
-                this.isVisitor = true;
             } else {
                 try {
                     Thread.sleep(1000);
                 } catch (Exception ignored) { }
-                this.isVisitor = true;
             }
+            this.isVisitor = true;
         }
     }
 

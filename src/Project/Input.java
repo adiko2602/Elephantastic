@@ -3,7 +3,7 @@ package Project;
 import java.util.Scanner;
 
 public class Input {
-    private static Scanner readInput = new Scanner(System.in);
+    private static final Scanner readInput = new Scanner(System.in);
 
     public static void GetEnter() {
         ReadInput();

@@ -5,7 +5,7 @@ import Project.Output;
 import java.util.ArrayList;
 
 public class Zoo {
-    private ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
+    private final ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
     private int zooNumberOfActualVisitor = 0;                       // Number of visitors in zoo
     private int zooDirtiness = 2;                                   // Number of zoo dirtiness
     private int zooAttractiveness = 5;                              // Number of zoo attractiveness

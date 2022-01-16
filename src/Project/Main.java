@@ -2,11 +2,7 @@ package Project;
 
 import Project.QueueGenerator.QueueGenerator;
 import Project.Timer.Timer;
-import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
-
-import java.util.ArrayList;
-
 
 public class Main {
 
