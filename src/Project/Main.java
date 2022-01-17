@@ -16,10 +16,12 @@ public class Main {
         Thread queueGeneratorThread = new Thread(queueGenerator);
 
         timerThread.start();
-        zooManagementThread.start();
         queueGeneratorThread.start();
+        zooManagementThread.start();
+
 
         //noinspection InfiniteLoopStatement
+
         while (true) {
             try {
                 Thread.sleep(10);

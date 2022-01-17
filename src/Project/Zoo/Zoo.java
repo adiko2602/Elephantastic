@@ -2,11 +2,14 @@ package Project.Zoo;
 
 import Project.Animals.Animals;
 import Project.Output;
+import Project.Visitors.Visitor;
+
 import java.util.ArrayList;
 
 public class Zoo {
+    private final ArrayList<Visitor> visitors = new ArrayList<>();
     private final ArrayList<Animals> animals = new ArrayList<>();         // List for animals in zoo
-    private int zooNumberOfActualVisitor = 0;                       // Number of visitors in zoo
+    //private int zooNumberOfActualVisitor = 0;                       // Number of visitors in zoo
     private int zooDirtiness = 2;                                   // Number of zoo dirtiness
     private int zooAttractiveness = 5;                              // Number of zoo attractiveness
 
@@ -76,17 +79,26 @@ public class Zoo {
         }
     }
 
-    public void VisitorLetIn() {                // Method for visitor number increase
-        this.zooNumberOfActualVisitor++;
+    public void VisitorLetIn(Visitor visitor) {
+        this.visitors.add(visitor);
+    }
+    //public void VisitorLetIn() {                // Method for visitor number increase
+    //    this.zooNumberOfActualVisitor++;
+    //}
+    public void VisitorLetOut(int index) {               // Method for visitor number decrease
+        this.visitors.remove(index);
+    }
+    //public void VisitorLetOut() {               // Method for visitor number decrease
+    //    this.zooNumberOfActualVisitor--;
+    //}
+
+    public int GetZooNumberOfVisitor() {  // Method for visitor actual visitors number in zoo
+        return this.visitors.size();
     }
 
-    public void VisitorLetOut() {               // Method for visitor number decrease
-        this.zooNumberOfActualVisitor--;
-    }
-
-    public int GetZooNumberOfActualVisitor() {  // Method for visitor actual visitors number in zoo
-        return this.zooNumberOfActualVisitor;
-    }
+    //public int GetZooNumberOfActualVisitor() {  // Method for visitor actual visitors number in zoo
+     //   return this.zooNumberOfActualVisitor;
+    //}
 
     public int GetZooNumberOfAnimal() {         // Method for visitor actual animals number in zoo
         return this.animals.size();

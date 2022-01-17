@@ -4,7 +4,7 @@ import Project.Output;
 
 public class Timer implements Runnable {
     private long runSeconds = 0;
-    private long seconds = 0;
+    private long seconds = 478;
     private int day = 1;
     private boolean endDay = false;
 

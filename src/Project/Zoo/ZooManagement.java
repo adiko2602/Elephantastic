@@ -143,8 +143,8 @@ public class ZooManagement implements Runnable {
         int tempZooAnimalFun = 0;
         int tempZooAnimalClean = 0;
 
-        while(this.zoo.GetZooNumberOfActualVisitor()>0) {
-            this.zoo.VisitorLetOut();
+        while(this.zoo.GetZooNumberOfVisitor()>0) {
+            this.zoo.VisitorLetOut(zoo.GetZooNumberOfVisitor()-1);
         }
 
         int i = this.zoo.GetZooNumberOfAnimal()-1;
@@ -195,7 +195,7 @@ public class ZooManagement implements Runnable {
 
     public void LetIn(Visitor visitor) {
         if(this.zooCashOffice.CheckVisitor(visitor))
-            this.zoo.VisitorLetIn();
+            this.zoo.VisitorLetIn(visitor);
     }
 
     public int GetAttractiveness() {
@@ -205,7 +205,7 @@ public class ZooManagement implements Runnable {
     private void ZooStats() {
         Output.Set("Zoo name: " + zoo.GetZooName() + "\n" +
                 "Number of animals: " + zoo.GetZooNumberOfAnimal() + "\n" +
-                "Amount of visitors: " + zoo.GetZooNumberOfActualVisitor() + "\n" +
+                "Amount of visitors: " + zoo.GetZooNumberOfVisitor() + "\n" +
                 "Attractiveness level: " + zoo.GetZooAttractiveness() + "\n" +
                 "Dirtiness level: " + zoo.GetZooDirtiness() + "\n" +
                 "Money in the piggy bank: " + this.zooCashOffice.GetCash() + "$");
