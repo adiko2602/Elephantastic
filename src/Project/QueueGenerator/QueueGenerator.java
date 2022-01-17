@@ -14,8 +14,6 @@ public class QueueGenerator implements Runnable {
     private int actualDay;
     private int actualHour;
 
-    private int actualAttractiveness;
-
     private final int[] hoursMultiplier = {0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 0, 0, 0};
 
     public QueueGenerator(Timer timer, ZooManagement zooManagement) {
@@ -23,7 +21,6 @@ public class QueueGenerator implements Runnable {
         this.zooManagement = zooManagement;
         this.actualDay = this.timer.GetActualDay();
         this.actualHour = this.timer.GetActualHour();
-        this.actualAttractiveness = this.zooManagement.GetAttractiveness();
     }
 
     @Override
@@ -41,10 +38,6 @@ public class QueueGenerator implements Runnable {
         Output.Set("Check parameters");
         Output.Set("Actual Hour: " + this.actualHour);
         Output.Set("Actual Hour: " + this.timer.GetActualHour());*/
-        if (this.actualDay != this.timer.GetActualDay()) {
-            this.actualDay = this.timer.GetActualDay();
-            this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-        }
         if (this.actualHour != this.timer.GetActualHour()) {
             this.actualHour = this.timer.GetActualHour();
             //Output.Set("Generate visitors");
@@ -57,7 +50,7 @@ public class QueueGenerator implements Runnable {
         Random rand = new Random();
         int numberOfVisitors = rand.nextInt(10) + 10;
         numberOfVisitors *= this.hoursMultiplier[this.actualHour];
-        numberOfVisitors += (int) (numberOfVisitors * (this.actualAttractiveness / 2.0));
+        numberOfVisitors += (int) (numberOfVisitors * (this.zooManagement.GetAttractiveness() / 2.0));
         Output.Set("" + numberOfVisitors);
         for (int i = 0; i < numberOfVisitors; i++) {
             //Output.Set("Visitor " + i);
