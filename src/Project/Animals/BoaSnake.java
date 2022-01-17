@@ -1,6 +1,6 @@
 package Project.Animals;
 
-public class BoaSnake extends Animals {
+public class  BoaSnake extends Animals {
     public BoaSnake() {
         this.animalName = "Boa Constrictor";
         this.wakeUp = 6;
