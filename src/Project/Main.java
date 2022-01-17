@@ -26,7 +26,7 @@ public class Main {
             try {
                 Thread.sleep(10);
             } catch (Exception ignored) {}
-            zooManagement.CheckWorkers();
+            zooManagement.CheckStatus();
             if(timer.GetEndDay()) {
                 timer.SetEndDay();
                 zooManagement.EndDay();

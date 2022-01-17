@@ -35,6 +35,10 @@ public class ZooManagement implements Runnable {
         this.timer = timer;
     }
 
+    public void CheckStatus() {
+        CheckWorkers();
+    }
+
     public void BuyAnimal() {
         Output.Set("\nSelect an animal you would like to buy: ");
         ListOfAnimalsToBuy();
@@ -101,7 +105,7 @@ public class ZooManagement implements Runnable {
         }
     }
 
-    public void CheckWorkers() {
+    private void CheckWorkers() {
         if(!this.workers.isEmpty()) {
             for (int i = this.workers.size()-1; i>=0; i--) {
                 if(this.workers.get(i).GetWorking()) {
@@ -280,7 +284,7 @@ public class ZooManagement implements Runnable {
     }
 
     public int GetAttractiveness() {
-        return 3;
+        return this.zoo.GetZooAttractiveness();
     }
 
     private void ZooStats() {
