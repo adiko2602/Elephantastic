@@ -1,6 +1,5 @@
 package Project.QueueGenerator;
 
-import Project.Output;
 import Project.Timer.Timer;
 import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
@@ -28,17 +27,12 @@ public class QueueGenerator implements Runnable {
                 Thread.sleep(10);
             } catch (Exception ignored) {}
             CheckParameters();
-            //Output.Set("Run for queue");
         }
     }
 
-    private void CheckParameters() {/*
-        Output.Set("Check parameters");
-        Output.Set("Actual Hour: " + this.actualHour);
-        Output.Set("Actual Hour: " + this.timer.GetActualHour());*/
+    private void CheckParameters() {
         if (this.actualHour != this.timer.GetActualHour()) {
             this.actualHour = this.timer.GetActualHour();
-            //Output.Set("Generate visitors");
             GenerateVisitors();
         }
     }
@@ -49,84 +43,10 @@ public class QueueGenerator implements Runnable {
         int numberOfVisitors = rand.nextInt(10) + 10;
         numberOfVisitors *= rand.nextInt(this.hoursMultiplier[this.actualHour])+1;
         numberOfVisitors += (int) (numberOfVisitors * (this.zooManagement.GetAttractiveness() / 2.0));
-        Output.Set("" + numberOfVisitors);
         for (int i = 0; i < numberOfVisitors; i++) {
-            //Output.Set("Visitor " + i);
             this.zooManagement.LetIn(new Visitor());
         }
     }
 }
-
-    /*@Override
-    public void run() {
-        while(true) {
-            CheckDay();
-            Output.Set("" + this.actualHour + "/" + this.timer.GetActualHour());
-            if(!(this.actualHour == this.timer.GetActualHour())) {
-                this.actualHour = this.timer.GetActualHour();
-                Generate();
-            }
-            if(!this.isVisitor) {
-                GenerateIsVisitor();
-            }
-            try {
-                Thread.sleep(1);
-            } catch (Exception ignored) { }
-        }
-    }
-
-    private void CheckDay() {
-        if(this.actualDay != this.timer.GetActualDay()) {
-            this.actualDay = this.timer.GetActualDay();
-            int visitorNumberStep = 10;
-            if(this.actualAttractiveness < this.zooManagement.GetAttractiveness()) {
-                this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-                this.visitorNumber += visitorNumberStep;
-            }
-            if(this.actualAttractiveness > this.zooManagement.GetAttractiveness()) {
-                this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-                if(this.visitorNumber >= this.minVisitorNumber) {
-                    this.visitorNumber -= visitorNumberStep;
-                }
-            }
-        }
-    }
-
-    private void GenerateIsVisitor() {
-        if(!this.visitorsQueue.isEmpty()) {
-            if(this.visitorsQueue.size() > 60) {
-                try {
-                    Thread.sleep(200);
-                } catch (Exception ignored) { }
-            } else {
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception ignored) { }
-            }
-            this.isVisitor = true;
-        }
-    }
-
-    private void Generate() {
-        Output.Set("Generate");
-        int r = this.visitorNumber*this.hoursMultiplier[this.actualHour]*this.actualAttractiveness;
-        for(int i = 0; i<r; i++) {
-            visitorsQueue.add(new Visitor());
-        }
-        Output.Set("" + this.visitorsQueue.size());
-    }
-
-    public Visitor GetVisitor() {
-        Visitor visitor = this.visitorsQueue.get(this.visitorsQueue.size()-1);
-        this.visitorsQueue.remove(this.visitorsQueue.size()-1);
-        this.isVisitor = false;
-        return visitor;
-    }
-
-    public boolean CheckIfIsVisitor() {
-        return this.isVisitor;
-    }
-
-     */
 
 
