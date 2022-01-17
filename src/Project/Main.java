@@ -19,7 +19,9 @@ public class Main {
         zooManagementThread.start();
         queueGeneratorThread.start();
 
+
         //noinspection InfiniteLoopStatement
+
         while (true) {
             try {
                 Thread.sleep(10);

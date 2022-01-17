@@ -23,7 +23,7 @@ public class ZooManagement implements Runnable {
     );
 
     private final ArrayList<Workers> workers = new ArrayList<>();
-    private final ArrayList<Workers> workersNotAvailable = new ArrayList<>();
+    //private final ArrayList<Workers> workersNotAvailable = new ArrayList<>();
 
     public void run() {
         Menu();
@@ -102,12 +102,13 @@ public class ZooManagement implements Runnable {
     }
 
     public void CheckWorkers() {
-        if(!workersNotAvailable.isEmpty()) {
-            for (int i = workersNotAvailable.size()-1; i>=0; i--) {
-                if(workersNotAvailable.get(i).GetWorkEndTime() < timer.CheckRunSeconds()) {
-                    workers.get(i).SetWorkEndTime(0);
-                    workers.add(workersNotAvailable.get(i));
-                    workersNotAvailable.remove(i);
+        if(!this.workers.isEmpty()) {
+            for (int i = this.workers.size()-1; i>=0; i--) {
+                if(this.workers.get(i).GetWorking()) {
+                    if (this.workers.get(i).GetWorkEndTime() < this.timer.CheckRunSeconds()) {
+                        this.workers.get(i).SetWorkEndTime(0);
+                        this.workers.get(i).SetWorking(false);
+                    }
                 }
             }
         }
@@ -125,19 +126,61 @@ public class ZooManagement implements Runnable {
     }
 
     public void CleanZoo() {
-        this.zoo.DecreaseZooDirtiness();
+        if(!workers.isEmpty()) {
+            boolean workerAvailable = false;
+            for (Workers worker: this.workers) {
+                if(!worker.GetWorking()) {
+                    worker.SetWorkEndTime(this.timer.CheckRunSeconds()+120);
+                    worker.SetWorking(true);
+                    this.zoo.DecreaseZooDirtiness();
+                    workerAvailable = true;
+                    break;
+                }
+            }
+            if(!workerAvailable) {
+                Output.Set("No available worker.");
+            }
+        } else {
+            Output.Set("No available worker.");
+        }
     }
 
     public void FeedAnimal() {
-        if(this.hungry = true;) {
-            this.hungry =false;
-            Output.Set("The animal was fed.");
+        if (!workers.isEmpty()) {
+            if (this.zooCashOffice.GetCash() >= 20) {
+                Output.Set("\nSelect an animal you would like to sell: ");
+                this.zoo.GetAnimalsList();
+                int numberSelected = Input.GetInt() - 1;
+                Animals animal = this.zoo.GetAnimal(numberSelected);
+                if (!(animal == null)) {
+                    if(this.timer.GetActualHour() >= animal.GetAnimalWakeUp() && this.timer.GetActualHour() < animal.GetAnimalGoToSleep()) {
+                        boolean workerAvailable = false;
+                        for (Workers worker : this.workers) {
+                            if (!worker.GetWorking()) {
+                                worker.SetWorkEndTime(this.timer.CheckRunSeconds() + 40);
+                                worker.SetWorking(true);
+                                workerAvailable = true;
+                                break;
+                            }
+                        }
+                        if (!workerAvailable) {
+                            Output.Set("No available worker.");
+                        } else {
+                            this.zooCashOffice.AddCash(20);
+                            animal.SetAnimalHungry(false);
+                            animal.ResetAnimalWithoutFood();
+                            Output.Set("Animal " + animal.GetAnimalName() + " successfully feed. ");
+                        }
+                    } else {
+                        Output.Set("Animal " + animal.GetAnimalName() + " sleep.");
+                    }
+                }
+            } else {
+                Output.Set("You low in cash.");
+            }
+        } else {
+            Output.Set("No available worker.");
         }
-        else
-        {
-            Output.Set("The animal has been fed earlier and is not hungry.");
-        }
-
     }
 
     private void ListOfAnimalsToBuy() {
@@ -149,10 +192,9 @@ public class ZooManagement implements Runnable {
 
     public void EndDay() {
         int tempZooAnimalFun = 0;
-        int tempZooAnimalClean = 0;
 
-        while(this.zoo.GetZooNumberOfActualVisitor()>0) {
-            this.zoo.VisitorLetOut();
+        while(this.zoo.GetZooNumberOfVisitor()>0) {
+            this.zoo.VisitorLetOut(this.zoo.GetZooNumberOfVisitor()-1);
         }
 
         int i = this.zoo.GetZooNumberOfAnimal()-1;
@@ -169,23 +211,16 @@ public class ZooManagement implements Runnable {
                     tempZooAnimalFun--;
 
 
-                if (animal.GetAnimalCleanLevel() > 7)
-                    tempZooAnimalClean++;
-                else
-                    tempZooAnimalClean--;
-
-
                 if(animal.GetAnimalHungry()) {
                     animal.IncreaseAnimalWithoutFood();
                 }
-                animal.DecreaseAnimalClean();
                 animal.DecreaseAnimalFun();
                 animal.SetAnimalHungry(true);
             }
             i--;
         }
 
-        if(tempZooAnimalFun >= 0 && tempZooAnimalClean >= 0)
+        if(tempZooAnimalFun >= 0 && this.zoo.GetZooDirtiness() < 4)
             this.zoo.IncreaseZooAttractiveness();
         else
             this.zoo.DecreaseZooAttractiveness();
@@ -203,7 +238,7 @@ public class ZooManagement implements Runnable {
 
     public void LetIn(Visitor visitor) {
         if(this.zooCashOffice.CheckVisitor(visitor))
-            this.zoo.VisitorLetIn();
+            this.zoo.VisitorLetIn(visitor);
     }
 
     public int GetAttractiveness() {
@@ -211,12 +246,24 @@ public class ZooManagement implements Runnable {
     }
 
     private void ZooStats() {
-        Output.Set("Zoo name: " + zoo.GetZooName() + "\n" +
-                "Number of animals: " + zoo.GetZooNumberOfAnimal() + "\n" +
-                "Amount of visitors: " + zoo.GetZooNumberOfActualVisitor() + "\n" +
-                "Attractiveness level: " + zoo.GetZooAttractiveness() + "\n" +
-                "Dirtiness level: " + zoo.GetZooDirtiness() + "\n" +
+        Output.Set("Zoo name: " + this.zoo.GetZooName() + "\n" +
+                "Number of animals: " + this.zoo.GetZooNumberOfAnimal() + "\n" +
+                "Amount of visitors: " + this.zoo.GetZooNumberOfVisitor() + "\n" +
+                "Attractiveness level: " + this.zoo.GetZooAttractiveness() + "\n" +
+                "Dirtiness level: " + this.zoo.GetZooDirtiness() + "\n" +
                 "Money in the piggy bank: " + this.zooCashOffice.GetCash() + "$");
+    }
+
+    private void GetWorkerStats() {
+        Output.Set("Select which worker statistics you would like to view: ");
+        GetWorkersList();
+        int numberSelected = Input.GetInt() - 1;
+        if(numberSelected >= 0 && numberSelected < workers.size()) {
+            Workers worker = workers.get(numberSelected);
+            if (!(worker == null)) {
+                worker.WorkerStats();
+            }
+        }
     }
 
     public void Menu() {
@@ -259,12 +306,14 @@ public class ZooManagement implements Runnable {
                     Output.Set("[1] Hire a worker");
                     Output.Set("[2] Fire a worker");
                     Output.Set("[3] List all workers");
+                    Output.Set("[4] Worker stats");
                     Output.Set("[0] Return back to main menu");
                     int workers = Input.GetInt();
                     switch (workers) {
                         case 1 -> HireWorker();
                         case 2 -> FireWorker();
                         case 3 -> GetWorkersList();
+                        case 4 -> GetWorkerStats();
                         case 0 -> Menu();
                         default -> Output.Set("Wrong number selected.");
                     }
@@ -277,7 +326,7 @@ public class ZooManagement implements Runnable {
                     Output.Set("[0] Return back to main menu");
                     int zoo = Input.GetInt();
                     switch (zoo) {
-                        case 1 -> {CleanZoo(); Output.Set("Zoo has been cleaned.");}
+                        case 1 -> CleanZoo();
                         case 2 -> this.timer.GetActualTime();
                         case 3 -> {Output.Set("Zoo statistics."); ZooStats();}
                         case 0 -> Menu();
