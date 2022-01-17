@@ -10,26 +10,14 @@ public abstract class Animals {
     protected int funLevel = 5;
     protected boolean hungry = true;
     protected int maxFunLevel = 10;
-    protected int maxCleanLevel = 10;
     protected int buyValue;
     protected int sellValue;
     protected int withoutFood;
 
+
+    // getters
     public String GetAnimalName() {
         return this.animalName;
-    }
-
-    public void SetAnimalHungry(boolean state) {
-        this.hungry = state;
-    }
-
-    public void AnimalStats() {
-        Output.Set("Name: " + GetAnimalName() + "\n" +
-                    "Fun level: " + GetAnimalFun() + "\n" +
-                    "Clean level: " + GetAnimalCleanLevel() + "\n" +
-                    "Hungry level: " + GetAnimalHungry() + "\n" +
-                    "Wake up time: " + GetAnimalWakeUp() + "\n" +
-                    "Going to sleep time: " + GetAnimalGoToSleep());
     }
 
     public int GetAnimalWakeUp() {
@@ -38,10 +26,6 @@ public abstract class Animals {
 
     public int GetAnimalGoToSleep() {
         return this.goToSleep;
-    }
-
-    public int GetAnimalCleanLevel() {
-        return this.cleanLevel;
     }
 
     public int GetAnimalFun() {
@@ -58,6 +42,20 @@ public abstract class Animals {
 
     public int GetAnimalWithoutFood() { return this.withoutFood; }
 
+    public void AnimalStats() {
+        Output.Set("Name: " + GetAnimalName() + "\n" +
+                "Fun level: " + GetAnimalFun() + "\n" +
+                "Hungry: " + GetAnimalHungry() + "\n" +
+                "Days without eat: " + GetAnimalWithoutFood() + "\n" +
+                "Wake up time: " + GetAnimalWakeUp() + "\n" +
+                "Going to sleep time: " + GetAnimalGoToSleep());
+    }
+
+    // setters
+    public void SetAnimalHungry(boolean state) {
+        this.hungry = state;
+    }
+
     public void IncreaseAnimalFun() {
         if(this.funLevel < this.maxFunLevel) {
             this.funLevel++;
@@ -67,18 +65,6 @@ public abstract class Animals {
     public void DecreaseAnimalFun() {
         if(this.funLevel > 0) {
             this.funLevel--;
-        }
-    }
-
-    public void IncreaseAnimalClean() {
-        if(this.cleanLevel < this.maxCleanLevel) {
-            this.cleanLevel++;
-        }
-    }
-
-    public void DecreaseAnimalClean() {
-        if(this.cleanLevel > 0) {
-            this.cleanLevel--;
         }
     }
 
