@@ -1,10 +1,14 @@
 package Project.Workers;
 
+import Project.Output;
+
 import java.util.Random;
 
 public class Workers {
     private long workEndTime;
     private final String name;
+    private boolean working = false;
+    private final int workerValue = 500;
 
     public Workers() {
         Random rand = new Random();
@@ -24,8 +28,16 @@ public class Workers {
         return this.name;
     }
 
+    public void SetWorking(boolean state) { this.working = state; }
+
+    public boolean GetWorking() { return this.working; }
+
     public int GetValue() {
-        int workerValue = 500;
         return workerValue;
+    }
+
+    public void WorkerStats() {
+        Output.Set("Name: " + GetName() + "\n" +
+                "Working: " + GetWorking() + "\n");
     }
 }
