@@ -19,7 +19,6 @@ public class QueueGenerator implements Runnable {
     public QueueGenerator(Timer timer, ZooManagement zooManagement) {
         this.timer = timer;
         this.zooManagement = zooManagement;
-        this.actualDay = this.timer.GetActualDay();
         this.actualHour = this.timer.GetActualHour();
     }
 
