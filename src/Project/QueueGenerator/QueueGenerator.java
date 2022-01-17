@@ -47,7 +47,7 @@ public class QueueGenerator implements Runnable {
     private void GenerateVisitors() {
         Random rand = new Random();
         int numberOfVisitors = rand.nextInt(10) + 10;
-        numberOfVisitors *= this.hoursMultiplier[this.actualHour];
+        numberOfVisitors *= rand.nextInt(this.hoursMultiplier[this.actualHour])+1;
         numberOfVisitors += (int) (numberOfVisitors * (this.zooManagement.GetAttractiveness() / 2.0));
         Output.Set("" + numberOfVisitors);
         for (int i = 0; i < numberOfVisitors; i++) {
