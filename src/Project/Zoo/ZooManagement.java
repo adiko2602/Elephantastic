@@ -191,10 +191,9 @@ public class ZooManagement implements Runnable {
 
     public void EndDay() {
         int tempZooAnimalFun = 0;
-        int tempZooAnimalClean = 0;
 
         while(this.zoo.GetZooNumberOfVisitor()>0) {
-            this.zoo.VisitorLetOut(zoo.GetZooNumberOfVisitor()-1);
+            this.zoo.VisitorLetOut(this.zoo.GetZooNumberOfVisitor()-1);
         }
 
         int i = this.zoo.GetZooNumberOfAnimal()-1;
@@ -211,23 +210,16 @@ public class ZooManagement implements Runnable {
                     tempZooAnimalFun--;
 
 
-                if (animal.GetAnimalCleanLevel() > 7)
-                    tempZooAnimalClean++;
-                else
-                    tempZooAnimalClean--;
-
-
                 if(animal.GetAnimalHungry()) {
                     animal.IncreaseAnimalWithoutFood();
                 }
-                animal.DecreaseAnimalClean();
                 animal.DecreaseAnimalFun();
                 animal.SetAnimalHungry(true);
             }
             i--;
         }
 
-        if(tempZooAnimalFun >= 0 && tempZooAnimalClean >= 0)
+        if(tempZooAnimalFun >= 0 && this.zoo.GetZooDirtiness() < 4)
             this.zoo.IncreaseZooAttractiveness();
         else
             this.zoo.DecreaseZooAttractiveness();
