@@ -63,7 +63,7 @@ public class Zoo {
 
     public void DecreaseZooDirtiness() {        // Method for zoo dirtiness decrease
         if(this.zooDirtiness > 1) {
-            this.zooDirtiness=0;
+            this.zooDirtiness--;
         }
     }
 
