@@ -172,7 +172,7 @@ public class ZooManagement implements Runnable {
                             Output.Set("Animal " + animal.GetAnimalName() + "has been fed successfully. ");
                         }
                     } else {
-                        Output.Set("Animal " + animal.GetAnimalName() + " sleep.");
+                        Output.Set("Animal " + animal.GetAnimalName() + "is sleeping.");
                     }
                 }
             } else {
@@ -214,6 +214,7 @@ public class ZooManagement implements Runnable {
                 if(animal.GetAnimalHungry()) {
                     animal.IncreaseAnimalWithoutFood();
                 }
+                zoo.IncreaseZooDirtiness();
                 animal.DecreaseAnimalFun();
                 animal.SetAnimalHungry(true);
             }
