@@ -11,7 +11,6 @@ public class QueueGenerator implements Runnable {
     private final Timer timer;
     private final ZooManagement zooManagement;
 
-    private int actualDay;
     private int actualHour;
 
     private final int[] hoursMultiplier = {0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 7, 6, 4, 4, 3, 3, 2, 1, 0, 0, 0};
