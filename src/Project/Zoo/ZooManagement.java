@@ -307,7 +307,7 @@ public class ZooManagement implements Runnable {
                     Output.Set("[1] Hire a worker");
                     Output.Set("[2] Fire a worker");
                     Output.Set("[3] List all workers");
-                    Output.Set("[4] Worker stats");
+                    Output.Set("[4] Show statistics of a worker");
                     Output.Set("[0] Return back to main menu");
                     int workers = Input.GetInt();
                     switch (workers) {

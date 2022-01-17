@@ -27,13 +27,20 @@ public class Workers {
 
     public boolean GetWorking() { return this.working; }
 
+    public String WorkerStatus(){
+        if(GetWorking()) {
+            return "Currently busy";
+        }
+        else return "Free";
+    }
+
     public int GetValue() {
         return workerValue;
     }
 
     public void WorkerStats() {
         Output.Set("Name: " + GetName() + "\n" +
-                "Working: " + GetWorking() + "\n");
+                "Work status: " + WorkerStatus() + "\n");
     }
 
     // setters
