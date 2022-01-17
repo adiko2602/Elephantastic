@@ -17,6 +17,7 @@ public class Timer implements Runnable {
         }
     }
 
+    // private methods
     private void CountSeconds() {
         try {
             Thread.sleep(1000);
@@ -35,16 +36,25 @@ public class Timer implements Runnable {
         }
     }
 
+    // getters
     public long CheckRunSeconds() {
         return this.runSeconds;
     }
 
-    public void SetEndDay() {
-        this.endDay = false;
-    }
-
     public boolean GetEndDay() {
         return this.endDay;
+    }
+
+    public int GetActualMinute() {
+        return (int)this.seconds%60;
+    }
+
+    public int GetActualHour() {
+        return (int)(this.seconds%3600)/60;
+    }
+
+    public int GetActualDay() {
+        return this.day;
     }
 
     public void GetActualTime() {
@@ -55,15 +65,8 @@ public class Timer implements Runnable {
         Output.Set("Day: " + this.day + " \nTime: " + timeString);
     }
 
-    public int GetActualHour() {
-        return (int)(this.seconds%3600)/60;
-    }
-
-    public int GetActualMinute() {
-        return (int)this.seconds%60;
-    }
-
-    public int GetActualDay() {
-        return this.day;
+    // setters
+    public void SetEndDay() {
+        this.endDay = false;
     }
 }
