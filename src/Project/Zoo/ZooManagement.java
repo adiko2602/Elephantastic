@@ -16,6 +16,8 @@ public class ZooManagement implements Runnable {
     private final Zoo zoo;
     private final ZooCashOffice zooCashOffice;
     private final Timer timer;
+    private boolean finish = false;
+    private boolean exit = false;
 
     private final List<Class<?>> animalsToBuy = Arrays.asList(new Class<?>[]
             { Chimpanzee.class, AfricanElephant.class, BoaSnake.class, AfricanLion.class, EuropeanBison.class,
@@ -26,8 +28,12 @@ public class ZooManagement implements Runnable {
     //private final ArrayList<Workers> workersNotAvailable = new ArrayList<>();
 
     public void run() {
-        Menu();
+        while(!exit) {
+            Menu();
+        }
     }
+
+    public void stop() { this.exit = true; }
 
     public ZooManagement(Timer timer) {
         this.zoo = new Zoo();
@@ -36,6 +42,9 @@ public class ZooManagement implements Runnable {
     }
 
     public void CheckStatus() {
+        if(this.zooCashOffice.GetCash() > this.zooCashOffice.GetCashGoal()) {
+            this.finish = true;
+        }
         CheckWorkers();
     }
 
@@ -287,6 +296,15 @@ public class ZooManagement implements Runnable {
         return this.zoo.GetZooAttractiveness();
     }
 
+    public boolean Finish() {
+        return this.finish;
+    }
+
+    public void GetFinish() {
+        Output.Set("Cash in piggy: " + this.zooCashOffice.GetCash());
+        Output.Set("You need: " + this.zooCashOffice.GetCashGoal());
+    }
+
     private void ZooStats() {
         Output.Set("Zoo name: " + this.zoo.GetZooName() + "\n" +
                 "Number of animals: " + this.zoo.GetZooNumberOfAnimal() + "\n" +
@@ -310,7 +328,6 @@ public class ZooManagement implements Runnable {
 
     public void Menu() {
         //noinspection InfiniteLoopStatement
-        while(true) {
             Output.Set("\nPress enter...");
             Input.GetEnter();
             Output.Set("ZOO MENU");
@@ -380,7 +397,7 @@ public class ZooManagement implements Runnable {
                     Output.Set("Day finished.");
                 }
                 default -> Output.Set("Wrong number selected.");
-            }
+
         }
     }
 }

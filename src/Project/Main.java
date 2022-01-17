@@ -22,7 +22,7 @@ public class Main {
 
         //noinspection InfiniteLoopStatement
 
-        while (true) {
+        do {
             try {
                 Thread.sleep(10);
             } catch (Exception ignored) {}
@@ -30,8 +30,18 @@ public class Main {
             if(timer.GetEndDay()) {
                 timer.SetEndDay();
                 zooManagement.EndDay();
-                timer.GetActualTime();
             }
-        }
+        } while(!zooManagement.Finish());
+
+        Output.Set("Game end here. You do great job with animals in zoo.");
+        Output.Set("Goal reached!!!");
+        zooManagement.GetFinish();
+
+        timer.stop();
+        queueGenerator.stop();
+        zooManagement.stop();
+
+        Output.Set("Press enter to exit...");
+        Input.GetEnter();
     }
 }

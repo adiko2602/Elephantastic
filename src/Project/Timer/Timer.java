@@ -7,11 +7,12 @@ public class Timer implements Runnable {
     private long seconds = 715;
     private int day = 1;
     private boolean endDay = false;
+    private boolean exit = false;
 
     @Override
     public void run() {
         //noinspection InfiniteLoopStatement
-        while(true) {
+        while(!exit) {
             CountSeconds();
             CheckEndDay();
         }
@@ -68,5 +69,9 @@ public class Timer implements Runnable {
     // setters
     public void SetEndDay() {
         this.endDay = false;
+    }
+
+    public void stop() {
+        this.exit = true;
     }
 }

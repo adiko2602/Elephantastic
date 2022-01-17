@@ -9,6 +9,7 @@ import java.util.Random;
 public class QueueGenerator implements Runnable {
     private final Timer timer;
     private final ZooManagement zooManagement;
+    private boolean exit = false;
 
     private int actualHour;
 
@@ -22,12 +23,16 @@ public class QueueGenerator implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (!exit) {
             try {
                 Thread.sleep(10);
             } catch (Exception ignored) {}
             CheckParameters();
         }
+    }
+
+    public void stop() {
+        this.exit = true;
     }
 
     private void CheckParameters() {
