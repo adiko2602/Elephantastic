@@ -42,10 +42,10 @@ public class ZooManagement implements Runnable {
     }
 
     public void CheckStatus() {
+        CheckWorkers();
         if(this.zooCashOffice.GetCash() > this.zooCashOffice.GetCashGoal()) {
             this.finish = true;
         }
-        CheckWorkers();
     }
 
     public void BuyAnimal() {

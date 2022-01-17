@@ -10,9 +10,9 @@ public class ZooCashOffice {
     private final Integer firstPaymentValue = 0;
     private final Integer secondPaymentValue = 5;
     private final Integer thirdPaymentValue = 10;
-    private final int zooCashGoal = 5000001;
+    private final int zooCashGoal = 5000000;
 
-    private Integer zooCash = 5000000;
+    private Integer zooCash = 10000;
 
     public ZooCashOffice() {
             this.paymentOfAge = new HashMap<>();

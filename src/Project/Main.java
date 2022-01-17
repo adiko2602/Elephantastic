@@ -33,15 +33,12 @@ public class Main {
             }
         } while(!zooManagement.Finish());
 
-        Output.Set("Game end here. You do great job with animals in zoo.");
-        Output.Set("Goal reached!!!");
-        zooManagement.GetFinish();
-
         timer.stop();
         queueGenerator.stop();
         zooManagement.stop();
 
-        Output.Set("Press enter to exit...");
-        Input.GetEnter();
+        Output.Set("Game Goal is reached! \nThe game end here! \nYou do great job with yours animals in the zoo.\n\n");
+        zooManagement.GetFinish();
+        System.exit(1);
     }
 }
