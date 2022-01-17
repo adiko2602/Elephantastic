@@ -37,10 +37,10 @@ public class QueueGenerator implements Runnable {
         if (this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
             this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-            if (this.actualHour != this.timer.GetActualHour()) {
+        }
+        if (this.actualHour != this.timer.GetActualHour()) {
                 this.actualHour = this.timer.GetActualHour();
                 GenerateVisitors();
-            }
         }
     }
 
