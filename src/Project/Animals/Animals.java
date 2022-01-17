@@ -45,7 +45,8 @@ public abstract class Animals {
     public void AnimalStats() {
         Output.Set("Name: " + GetAnimalName() + "\n" +
                 "Fun level: " + GetAnimalFun() + "\n" +
-                "Hungry level: " + GetAnimalHungry() + "\n" +
+                "Hungry: " + GetAnimalHungry() + "\n" +
+                "Days without eat: " + GetAnimalWithoutFood() + "\n" +
                 "Wake up time: " + GetAnimalWakeUp() + "\n" +
                 "Going to sleep time: " + GetAnimalGoToSleep());
     }

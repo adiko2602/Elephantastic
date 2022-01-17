@@ -168,6 +168,7 @@ public class ZooManagement implements Runnable {
                         } else {
                             this.zooCashOffice.AddCash(20);
                             animal.SetAnimalHungry(false);
+                            animal.ResetAnimalWithoutFood();
                             Output.Set("Animal " + animal.GetAnimalName() + " successfully feed. ");
                         }
                     } else {
