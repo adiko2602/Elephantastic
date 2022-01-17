@@ -129,6 +129,14 @@ public class ZooManagement implements Runnable {
     }
 
     public void FeedAnimal() {
+        if(this.hungry = true;) {
+            this.hungry =false;
+            Output.Set("The animal was fed.");
+        }
+        else
+        {
+            Output.Set("The animal has been fed earlier and is not hungry.");
+        }
 
     }
 

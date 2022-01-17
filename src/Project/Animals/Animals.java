@@ -2,7 +2,8 @@ package Project.Animals;
 
 import Project.Output;
 
-public abstract class Animals {
+public abstract class
+Animals {
     protected String animalName;
     protected int wakeUp;
     protected int goToSleep;
@@ -18,6 +19,7 @@ public abstract class Animals {
     public String GetAnimalName() {
         return this.animalName;
     }
+
 
     public void SetAnimalHungry(boolean state) {
         this.hungry = state;
