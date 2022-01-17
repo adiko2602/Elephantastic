@@ -56,7 +56,7 @@ public class Zoo {
 
     public void AddAnimalToList(Animals animal) {                               // Method for add animal to zoo
         this.animals.add(animal);                                               // Add animal
-        Output.Set("Animal: " + animal.GetAnimalName() + " was added to zoo."); // Output
+        Output.Set("Animal: " + animal.GetAnimalName() + " has been added to the zoo."); // Output
     }
 
     // setters
@@ -88,7 +88,7 @@ public class Zoo {
     public void RemoveAnimalFromList(int animalNumber) {                        // Method for remove animal from zoo
         if(!this.animals.isEmpty()) {                                           // Check if zoo is empty
             if(animalNumber >= 0 && animalNumber < this.animals.size()) {       // Check if number is correct
-                Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " was removed from zoo.");     // Output
+                Output.Set("Animal: " + this.animals.get(animalNumber).GetAnimalName() + " has been removed from zoo.");     // Output
                 this.animals.remove(animalNumber);                              // Remove animal from zoo at index
             } else {
                 Output.Set("Animal with selected number does not exist!");               // Output

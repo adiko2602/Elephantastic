@@ -48,7 +48,7 @@ public class ZooManagement implements Runnable {
                     this.zoo.AddAnimalToList(animal);
                 } else {
                     Output.Set("You don't have enough cash.");
-                    Output.Set("Cash in bank: " + this.zooCashOffice.GetCash());
+                    Output.Set("Cash in the bank: " + this.zooCashOffice.GetCash());
                     Output.Set("Animal cost: " + animal.GetAnimalBuyValue());
                 }
             } catch (Exception exception) {
@@ -77,10 +77,10 @@ public class ZooManagement implements Runnable {
         if (worker.GetValue() <= this.zooCashOffice.GetCash()) {
             this.zooCashOffice.LowerCash(worker.GetValue());
             this.workers.add(worker);
-            Output.Set("Worker " + worker.GetName() + " add successfully to zoo.");
+            Output.Set("Worker " + worker.GetName() + " has been successfully added to the zoo.");
         } else {
             Output.Set("You don't have enough cash.");
-            Output.Set("Cash in bank: " + this.zooCashOffice.GetCash());
+            Output.Set("Cash in the bank: " + this.zooCashOffice.GetCash());
             Output.Set("Worker cost: " + worker.GetValue());
         }
     }
@@ -92,7 +92,7 @@ public class ZooManagement implements Runnable {
             int numberSelected = Input.GetInt() - 1;
             if(numberSelected >= 0 && numberSelected < this.workers.size()) {
                 workers.remove(numberSelected);
-                Output.Set("\nSelected worker fired successfully.");
+                Output.Set("\nSelected worker has been fired successfully.");
             } else {
                 Output.Set("Worker with selected number does not exist!");
             }
@@ -121,7 +121,7 @@ public class ZooManagement implements Runnable {
                 Output.Set("[" + (i++) + "] " + worker.GetName());          // Output
             }
         } else {
-            Output.Set("There isn't any workers.");                         // If list of workers is empty
+            Output.Set("There are no hired workers.");                         // If list of workers is empty
         }
     }
 
@@ -138,10 +138,10 @@ public class ZooManagement implements Runnable {
                 }
             }
             if(!workerAvailable) {
-                Output.Set("No available worker.");
+                Output.Set("All workers are currently busy");
             }
         } else {
-            Output.Set("No available worker.");
+            Output.Set("There are no available workers.");
         }
     }
 
@@ -164,22 +164,22 @@ public class ZooManagement implements Runnable {
                             }
                         }
                         if (!workerAvailable) {
-                            Output.Set("No available worker.");
+                            Output.Set("All workers are currently busy");
                         } else {
                             this.zooCashOffice.AddCash(20);
                             animal.SetAnimalHungry(false);
                             animal.ResetAnimalWithoutFood();
-                            Output.Set("Animal " + animal.GetAnimalName() + " successfully feed. ");
+                            Output.Set("Animal " + animal.GetAnimalName() + "has been fed successfully. ");
                         }
                     } else {
                         Output.Set("Animal " + animal.GetAnimalName() + " sleep.");
                     }
                 }
             } else {
-                Output.Set("You low in cash.");
+                Output.Set("You're too low on cash.");
             }
         } else {
-            Output.Set("No available worker.");
+            Output.Set("There are no available workers.");
         }
     }
 

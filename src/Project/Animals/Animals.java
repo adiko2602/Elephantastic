@@ -36,6 +36,13 @@ public abstract class Animals {
         return this.hungry;
     }
 
+    public String HungerStatus(){
+        if(GetAnimalHungry()) {
+            return "Starving";
+        }
+        else return "Full";
+    }
+
     public int GetAnimalBuyValue() { return this.buyValue; }
 
     public int GetAnimalSellValue() { return this.sellValue; }
@@ -45,8 +52,8 @@ public abstract class Animals {
     public void AnimalStats() {
         Output.Set("Name: " + GetAnimalName() + "\n" +
                 "Fun level: " + GetAnimalFun() + "\n" +
-                "Hungry: " + GetAnimalHungry() + "\n" +
-                "Days without eat: " + GetAnimalWithoutFood() + "\n" +
+                "Hunger status: " + HungerStatus() + "\n" +
+                "Days without eating: " + GetAnimalWithoutFood() + "\n" +
                 "Wake up time: " + GetAnimalWakeUp() + "\n" +
                 "Going to sleep time: " + GetAnimalGoToSleep());
     }
