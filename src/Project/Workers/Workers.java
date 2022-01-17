@@ -16,6 +16,7 @@ public class Workers {
         this.name = names[rand.nextInt(names.length)];
     }
 
+    // getters
     public long GetWorkEndTime() {
         return this.workEndTime;
     }
@@ -42,25 +43,10 @@ public class Workers {
                 "Work status: " + WorkerStatus() + "\n");
     }
 
-    public void SetWorkEndTime(long time)
-
-    {
+    // setters
+    public void SetWorkEndTime(long time) {
         this.workEndTime = time;
-        this.runSeconds + 120 seconds = time;
     }
 
-
-    public void SetWorkEndTime(long time)
-
-    {
-        this.workEndTime = time;
-        this.runSeconds + 120 seconds = time;
-    }
-
-
-    public long GetWorkEndTime() {
-        if time = this.runSeconds{
-            Output.Set("The employee has finished work and is avaible again.");
-        }
-        return this.workEndTime;
-    }
+    public void SetWorking(boolean state) { this.working = state; }
+}
