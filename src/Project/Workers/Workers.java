@@ -16,10 +16,7 @@ public class Workers {
         this.name = names[rand.nextInt(names.length)];
     }
 
-    public void SetWorkEndTime(long time) {
-        this.workEndTime = time;
-    }
-
+    // getters
     public long GetWorkEndTime() {
         return this.workEndTime;
     }
@@ -27,8 +24,6 @@ public class Workers {
     public String GetName() {
         return this.name;
     }
-
-    public void SetWorking(boolean state) { this.working = state; }
 
     public boolean GetWorking() { return this.working; }
 
@@ -40,4 +35,11 @@ public class Workers {
         Output.Set("Name: " + GetName() + "\n" +
                 "Working: " + GetWorking() + "\n");
     }
+
+    // setters
+    public void SetWorkEndTime(long time) {
+        this.workEndTime = time;
+    }
+
+    public void SetWorking(boolean state) { this.working = state; }
 }
