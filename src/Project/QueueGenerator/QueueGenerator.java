@@ -29,28 +29,39 @@ public class QueueGenerator implements Runnable {
     @Override
     public void run() {
         while (true) {
-            CheckParemeters();
+            try {
+                Thread.sleep(1000);
+            } catch (Exception ignored) {}
+            CheckParameters();
+            Output.Set("Run for queue");
         }
     }
 
-    private void CheckParemeters() {
+    private void CheckParameters() {
+        Output.Set("Check parameters");
+        Output.Set("Actual Hour: " + this.actualHour);
+        Output.Set("Actual Hour: " + this.timer.GetActualHour());
         if (this.actualDay != this.timer.GetActualDay()) {
             this.actualDay = this.timer.GetActualDay();
             this.actualAttractiveness = this.zooManagement.GetAttractiveness();
-            if (this.actualHour != this.timer.GetActualHour()) {
-                this.actualHour = this.timer.GetActualHour();
-                GenerateVisitors();
-            }
+        }
+        if (this.actualHour != this.timer.GetActualHour()) {
+            this.actualHour = this.timer.GetActualHour();
+            Output.Set("Generate visitors");
+            GenerateVisitors();
         }
     }
+
 
     private void GenerateVisitors() {
         Random rand = new Random();
         int numberOfVisitors = rand.nextInt(10) + 10;
         numberOfVisitors *= this.hoursMultiplier[this.actualHour];
         numberOfVisitors += (int) (numberOfVisitors * (this.actualAttractiveness / 2.0));
+        Output.Set("" + numberOfVisitors);
         for (int i = 0; i < numberOfVisitors; i++) {
-            zooManagement.LetIn(new Visitor());
+            Output.Set("Visitor " + i);
+            this.zooManagement.LetIn(new Visitor());
         }
     }
 }

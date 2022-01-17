@@ -203,11 +203,11 @@ public class ZooManagement implements Runnable {
     }
 
     private void ZooStats() {
-        Output.Set("Zoo name: " + zoo.GetZooName() + "\n" +
-                "Number of animals: " + zoo.GetZooNumberOfAnimal() + "\n" +
-                "Amount of visitors: " + zoo.GetZooNumberOfVisitor() + "\n" +
-                "Attractiveness level: " + zoo.GetZooAttractiveness() + "\n" +
-                "Dirtiness level: " + zoo.GetZooDirtiness() + "\n" +
+        Output.Set("Zoo name: " + this.zoo.GetZooName() + "\n" +
+                "Number of animals: " + this.zoo.GetZooNumberOfAnimal() + "\n" +
+                "Amount of visitors: " + this.zoo.GetZooNumberOfVisitor() + "\n" +
+                "Attractiveness level: " + this.zoo.GetZooAttractiveness() + "\n" +
+                "Dirtiness level: " + this.zoo.GetZooDirtiness() + "\n" +
                 "Money in the piggy bank: " + this.zooCashOffice.GetCash() + "$");
     }
 

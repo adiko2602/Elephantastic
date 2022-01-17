@@ -16,8 +16,8 @@ public class Main {
         Thread queueGeneratorThread = new Thread(queueGenerator);
 
         timerThread.start();
-        queueGeneratorThread.start();
         zooManagementThread.start();
+        queueGeneratorThread.start();
 
 
         //noinspection InfiniteLoopStatement
