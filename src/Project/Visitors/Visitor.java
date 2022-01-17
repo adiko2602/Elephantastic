@@ -10,7 +10,8 @@ public class Visitor {
         this.age = rand.nextInt(100)+1;
     }
 
-    public Integer GetAge() {
+    // getters
+    public int GetAge() {
         return this.age;
     }
 }
