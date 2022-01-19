@@ -301,7 +301,7 @@ public class ZooManagement implements Runnable {
     }
 
     public void GetFinish() {
-        Output.Set("Cash in piggy: " + this.zooCashOffice.GetCash());
+        Output.Set("Cash in the piggy bank: " + this.zooCashOffice.GetCash());
         Output.Set("You need: " + this.zooCashOffice.GetCashGoal());
     }
 
@@ -335,7 +335,6 @@ public class ZooManagement implements Runnable {
             Output.Set("[1] Manage your animals");
             Output.Set("[2] Manage your workers");
             Output.Set("[3] Manage your zoo");
-            Output.Set("[4] Finish the day");
 
             int input = Input.GetInt();
             switch (input) {
@@ -391,10 +390,6 @@ public class ZooManagement implements Runnable {
                         case 0 -> Menu();
                         default -> Output.Set("Wrong number selected.");
                     }
-                }
-                case 4 -> {
-                    EndDay();
-                    Output.Set("Day finished.");
                 }
                 default -> Output.Set("Wrong number selected.");
 

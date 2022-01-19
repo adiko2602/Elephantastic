@@ -37,7 +37,7 @@ public class Main {
         queueGenerator.stop();
         zooManagement.stop();
 
-        Output.Set("Game Goal is reached! \nThe game end here! \nYou do great job with yours animals in the zoo.\n\n");
+        Output.Set("Game Goal has been reached! \nThe game ends here! \nYou did a great job with your animals!\n\n");
         zooManagement.GetFinish();
         System.exit(1);
     }
