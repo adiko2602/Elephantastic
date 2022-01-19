@@ -7,6 +7,7 @@ import Project.Timer.Timer;
 import Project.Visitors.Visitor;
 import Project.Workers.Workers;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -179,7 +180,7 @@ public class ZooManagement implements Runnable {
                         if (!workerAvailable) {
                             Output.Set("All workers are currently busy");
                         } else {
-                            this.zooCashOffice.AddCash(20);
+                            this.zooCashOffice.LowerCash(20);
                             animal.SetAnimalHungry(false);
                             animal.ResetAnimalWithoutFood();
                             Output.Set("Animal " + animal.GetAnimalName() + "has been successfully fed. ");
@@ -208,7 +209,7 @@ public class ZooManagement implements Runnable {
                         boolean workerAvailable = false;
                         for (Workers worker : this.workers) {
                             if (!worker.GetWorking()) {
-                                worker.SetWorkEndTime(this.timer.CheckRunSeconds() + 40);
+                                worker.SetWorkEndTime(this.timer.CheckRunSeconds() + 60);
                                 worker.SetWorking(true);
                                 workerAvailable = true;
                                 break;
@@ -217,7 +218,7 @@ public class ZooManagement implements Runnable {
                         if (!workerAvailable) {
                             Output.Set("All workers are currently busy");
                         } else {
-                            this.zooCashOffice.AddCash(20);
+                            this.zooCashOffice.LowerCash(20);
                             animal.IncreaseAnimalFun();
                             Output.Set("You played with " + animal.GetAnimalName() + ", animal's happiness level increased. ");
                         }
@@ -264,19 +265,25 @@ public class ZooManagement implements Runnable {
                 if(animal.GetAnimalHungry()) {
                     animal.IncreaseAnimalWithoutFood();
                 }
-                zoo.IncreaseZooDirtiness();
                 animal.DecreaseAnimalFun();
                 animal.SetAnimalHungry(true);
             }
             i--;
         }
 
-        if(tempZooAnimalFun >= 0 && this.zoo.GetZooDirtiness() < 4)
+        Output.Set("Next day started.");
+        if(tempZooAnimalFun >= 0 && this.zoo.GetZooDirtiness() < 4) {
+            Output.Set("Zoo increase their attractiveness.");
             this.zoo.IncreaseZooAttractiveness();
-        else
+        }
+        else {
+            Output.Set("Zoo decrease their attractiveness.");
             this.zoo.DecreaseZooAttractiveness();
+        }
 
+        this.zoo.IncreaseZooDirtiness();
         this.timer.SetEndDay();
+        Menu();
     }
 
     public void ShowAnimalStats() {
