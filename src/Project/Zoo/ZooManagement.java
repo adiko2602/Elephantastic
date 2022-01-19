@@ -292,6 +292,14 @@ public class ZooManagement implements Runnable {
             this.zoo.VisitorLetIn(visitor);
     }
 
+    public void LetOut(int index) {
+        this.zoo.VisitorLetOut(index);
+    }
+
+    public int GetNumberOfVisitors(){
+        return this.zoo.GetZooNumberOfVisitor();
+    }
+
     public int GetAttractiveness() {
         return this.zoo.GetZooAttractiveness();
     }
