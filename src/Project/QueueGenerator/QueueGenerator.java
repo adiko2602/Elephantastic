@@ -56,7 +56,6 @@ public class QueueGenerator implements Runnable {
     }
 
     private void GenerateVisitorsToLeave() {
-        System.out.println(this.timer.GetActualHour());
         Random rand = new Random();
         int numberOfVisitors = this.zooManagement.GetNumberOfVisitors();
         int ratio = 0;
