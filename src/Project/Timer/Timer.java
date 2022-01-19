@@ -4,7 +4,7 @@ import Project.Output;
 
 public class Timer implements Runnable {
     private long runSeconds = 0;
-    private long seconds = 1000;
+    private long seconds = 1400;
     private int day = 1;
     private boolean endDay = false;
     private boolean exit = false;
@@ -30,7 +30,7 @@ public class Timer implements Runnable {
     }
 
     private void CheckEndDay() {
-        if(this.seconds > 1439) {
+        if(this.seconds > 1430) {
             this.seconds = 0;
             this.endDay = true;
             this.day++;
