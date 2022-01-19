@@ -1,5 +1,6 @@
 package Project.QueueGenerator;
 
+import Project.Output;
 import Project.Timer.Timer;
 import Project.Visitors.Visitor;
 import Project.Zoo.ZooManagement;
@@ -20,6 +21,7 @@ public class QueueGenerator implements Runnable {
         this.timer = timer;
         this.zooManagement = zooManagement;
         this.actualHour = this.timer.GetActualHour();
+        Output.Set("" + actualHour);
     }
 
     @Override

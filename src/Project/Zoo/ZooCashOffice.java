@@ -36,7 +36,7 @@ public class ZooCashOffice {
             this.zooCash += this.paymentOfAge.get(age);
             return true;
         } else {
-            Output.Set("Age of visitor is wrong!");
+            Output.Set("Age of the visitor is invalid!");
         }
         return false;
     }

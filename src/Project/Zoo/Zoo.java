@@ -62,7 +62,7 @@ public class Zoo {
     // setters
     public void IncreaseZooDirtiness() {        // Method for zoo dirtiness increase
         if(this.zooDirtiness < 10) {
-            this.zooDirtiness++;
+            this.zooDirtiness = 8;
         }
     }
 

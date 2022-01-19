@@ -3,8 +3,8 @@ package Project.Timer;
 import Project.Output;
 
 public class Timer implements Runnable {
-    private long runSeconds = 841;
-    private long seconds = 841;
+    private long runSeconds = 0;
+    private long seconds = 1435;
     private int day = 1;
     private boolean endDay = false;
     private boolean exit = false;
@@ -30,7 +30,7 @@ public class Timer implements Runnable {
     }
 
     private void CheckEndDay() {
-        if(this.seconds == 1440) {
+        if(this.seconds > 1439) {
             this.seconds = 0;
             this.endDay = true;
             this.day++;
@@ -51,7 +51,7 @@ public class Timer implements Runnable {
     }
 
     public int GetActualHour() {
-        return (int)(this.seconds%3600)/60;
+        return (int)(this.seconds/60);
     }
 
     public int GetActualDay() {
