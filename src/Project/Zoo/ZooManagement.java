@@ -245,7 +245,7 @@ public class ZooManagement implements Runnable {
         int tempZooAnimalFun = 0;
 
         while(this.zoo.GetZooNumberOfVisitor()>0) {
-            this.zoo.VisitorLetOut(this.zoo.GetZooNumberOfVisitor()-1);
+            this.zoo.VisitorLetOut();
         }
 
         int i = this.zoo.GetZooNumberOfAnimal()-1;
@@ -301,8 +301,8 @@ public class ZooManagement implements Runnable {
             this.zoo.VisitorLetIn(visitor);
     }
 
-    public void LetOut(int index) {
-        this.zoo.VisitorLetOut(index);
+    public void LetOut() {
+        this.zoo.VisitorLetOut();
     }
 
     public int GetNumberOfVisitors(){

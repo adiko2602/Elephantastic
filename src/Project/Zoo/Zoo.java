@@ -102,8 +102,11 @@ public class Zoo {
         this.visitors.add(visitor);
     }
 
-    public void VisitorLetOut(int index) {               // Method for visitor number decrease
-        this.visitors.remove(index);
+    public void VisitorLetOut() {               // Method for visitor number decrease
+
+        if(!visitors.isEmpty()) {
+            this.visitors.remove(visitors.size()-1);
+        }
     }
 
     public int GetZooNumberOfVisitor() {  // Method for visitor actual visitors number in zoo

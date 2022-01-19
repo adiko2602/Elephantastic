@@ -60,22 +60,21 @@ public class QueueGenerator implements Runnable {
     private void GenerateVisitorsToLeave() {
         Random rand = new Random();
         int numberOfVisitors = this.zooManagement.GetNumberOfVisitors();
-        int ratio = 0;
-        int numberOfVisitorsToLeave = 0;
+        int ratio;
+        int numberOfVisitorsToLeave;
         if (exitRatio[this.actualHour] == 1)
-            ratio = rand.nextInt(25)+1;
+            ratio = rand.nextInt(25) + 1;
         else if (exitRatio[this.actualHour] == 2)
-            ratio = rand.nextInt(25)+25;
+            ratio = rand.nextInt(25) + 25;
         else if (exitRatio[this.actualHour] == 3)
-            ratio = rand.nextInt(25)+50;
+            ratio = rand.nextInt(25) + 50;
         else
             ratio = 0;
-        numberOfVisitorsToLeave = (int) ((ratio/100.0) * numberOfVisitors);
-        try {
-            for (int i = numberOfVisitorsToLeave - 1; i >= 0; i--) {
-                this.zooManagement.LetOut(i);
-            }
-        }catch(Exception ignored) {}
+
+        numberOfVisitorsToLeave = (int) ((ratio / 100.0) * numberOfVisitors);
+        for (int i = 1; i <= numberOfVisitorsToLeave; i++) {
+            this.zooManagement.LetOut();
+        }
     }
 }
 
