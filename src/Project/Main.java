@@ -28,7 +28,7 @@ public class Main {
             } catch (Exception ignored) {}
             zooManagement.CheckStatus();
             if(timer.GetEndDay()) {
-                timer.SetEndDay();
+                //timer.SetEndDay();
                 zooManagement.EndDay();
             }
         } while(!zooManagement.Finish());

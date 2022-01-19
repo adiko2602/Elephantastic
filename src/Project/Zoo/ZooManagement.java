@@ -275,6 +275,8 @@ public class ZooManagement implements Runnable {
             this.zoo.IncreaseZooAttractiveness();
         else
             this.zoo.DecreaseZooAttractiveness();
+
+        this.timer.SetEndDay();
     }
 
     public void ShowAnimalStats() {
