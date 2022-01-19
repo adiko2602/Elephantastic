@@ -8,8 +8,8 @@ import java.util.HashMap;
 public class ZooCashOffice {
     private final HashMap<Integer, Integer> paymentOfAge;
     private final Integer firstPaymentValue = 0;
-    private final Integer secondPaymentValue = 5;
-    private final Integer thirdPaymentValue = 10;
+    private final Integer secondPaymentValue = 2;
+    private final Integer thirdPaymentValue = 5;
     private final int zooCashGoal = 5000000;
 
     private Integer zooCash = 10000;
