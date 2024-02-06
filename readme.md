@@ -1,6 +1,6 @@
 # Elephantastic
 
-Witamy w repozytorium naszego projektu - prostego symulatora zoo.
+Witamy w repozytorium naszego projektu - prostego symulatora zoo. Aplikacja jest oparta o język JAVA.
 
 Zadaniem użytkownika (gracza) jest utrzymanie, rozbudowa oraz zarządzanie zoo, tak, aby uzyskać odpowiednią ilość pieniędzy w banku zoo. Gracz ma do spełnienia tego celu kilka przydatnych narzędzi. 
 
