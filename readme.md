@@ -1,4 +1,4 @@
-### "Elephantastic"
+# Elephantastic
 
 Witamy w repozytorium naszego projektu - prostego symulatora zoo.
 
@@ -8,7 +8,7 @@ Najważnieszą mechaniką gry jest zwiększanie atrakcyjności zoo, która ma be
 
 Przy zakończeniu każdej doby, mechanika gry podumuje dotychczasowe poczynania i odpowiednio zwiększy lub zmniejszy atrakcyjność. 
 
-### Twórcy
+## Twórcy
 * **Urszula Gręzicka**
 * **Michał Sobiło**
 * **Konrad Karkosz**
